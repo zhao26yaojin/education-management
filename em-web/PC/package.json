@@ -1,0 +1,23 @@
+{
+  "name": "education management",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite --mode dev",
+    "build": "vite build",
+    "build:test": "vite build --mode test"
+  },
+  "dependencies": {
+    "axios": "1.6.2",
+    "vue": "^3.0.4",
+    "pinia": "2.1.7",
+    "vue-router": "4.2.5",
+    "element-plus": "^2.4.3"
+  },
+  "devDependencies": {
+    "vite": "^4.5.0",
+    "@vitejs/plugin-vue": "^4.4.1",
+    "@vue/compiler-sfc": "^3.0.4",
+    "unplugin-auto-import": "^0.17.2",
+    "unplugin-vue-components": "^0.26.0"
+  }
+}
