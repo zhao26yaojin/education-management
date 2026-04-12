@@ -1,9 +1,9 @@
 package com.zhl.education.model.convert;
 
-import com.zhl.education.model.entity.EduTeacher;
-import com.google.common.collect.Lists;
-import java.util.List;
 import org.springframework.beans.BeanUtils;
+import com.zhl.education.model.entity.EduTeacher;
+import java.util.List;
+import com.google.common.collect.Lists;
 import com.zhl.education.model.vo.TeacherVo;
 
 public class TeacherConverter {

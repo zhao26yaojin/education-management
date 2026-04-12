@@ -1,13 +1,13 @@
 package com.zhl.acl.mapper;
 
-import java.lang.Long;
-import com.zhl.acl.model.entity.SysUser;
-import org.apache.commons.lang3.StringUtils;
-import java.lang.String;
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.zhl.acl.model.qo.UserQo;
-import org.apache.ibatis.annotations.Mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import java.lang.Long;
+import org.apache.ibatis.annotations.Mapper;
+import java.lang.String;
+import org.apache.commons.lang3.StringUtils;
+import com.zhl.acl.model.entity.SysUser;
+import com.zhl.acl.model.qo.UserQo;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 
 @Mapper

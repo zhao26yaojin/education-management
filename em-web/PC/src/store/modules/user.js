@@ -1,6 +1,6 @@
 import { defineStore } from "pinia"
-import { ref } from "vue"
 import "@/store/modules/user"
+import { ref } from "vue"
 
 const useUserStore = defineStore("user", () => {
 	let userInfo = ref(null)
@@ -16,6 +16,19 @@ const useUserStore = defineStore("user", () => {
 		userInfo.value.token = ""
 		localStorage.setItem(token, token.value)
 	}
-	return { setUserInfo }
+	const getUserInfo = () => {
+		if (null == userInfo) {
+			initUserInfo(userInfo)
+		}
+
+	}
+	const initUserInfo = userInfo => {
+		if (null == token.value) {
+			return null
+		}
+
+		userInfo.value = loginInfo
+	}
+	return { setUserInfo, getUserInfo }
 })
 export default useUserStore

@@ -1,5 +1,5 @@
-import { loadEnv, defineConfig } from "vite"
 import uni from "@dcloudio/vite-plugin-uni"
+import { defineConfig, loadEnv } from "vite"
 
 const config = defineConfig(({ mode, command }) => {
 	const env = loadEnv(mode, process.cwd())

@@ -1,15 +1,15 @@
 package com.zhl.education.mapper;
 
-import java.lang.Long;
-import org.apache.commons.lang3.StringUtils;
-import java.lang.Integer;
-import java.lang.String;
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.zhl.education.model.qo.TeacherQo;
-import org.apache.ibatis.annotations.Mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.zhl.education.model.entity.EduTeacher;
+import java.lang.Integer;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import java.lang.Long;
+import org.apache.ibatis.annotations.Mapper;
+import java.lang.String;
+import org.apache.commons.lang3.StringUtils;
+import com.zhl.education.model.qo.TeacherQo;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 
 @Mapper
 public interface TeacherMapper extends BaseMapper<EduTeacher> {

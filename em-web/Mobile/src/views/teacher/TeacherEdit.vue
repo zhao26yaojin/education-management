@@ -24,9 +24,9 @@
 	</view>
 </template>
 <script setup>
-import { reactive } from "vue"
-import { saveForm as saveTeacherForm } from "@/api/edu/teacher"
 import uni from "@dcloudio/vite-plugin-uni"
+import { saveForm as saveTeacherForm } from "@/api/edu/teacher"
+import { reactive } from "vue"
 
 const teacherForm = reactive({
 	id: '',

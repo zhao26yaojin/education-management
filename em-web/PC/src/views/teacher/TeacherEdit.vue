@@ -24,17 +24,17 @@
 	</div>
 </template>
 <script setup>
-import { reactive } from "vue"
 import { saveForm as saveTeacherForm } from "@/api/edu/teacher"
+import { reactive } from "vue"
 
-const data = reactive({
+const teacherForm = reactive({
 	id: '',
 	name: '',
 	level: '',
 	avatar: ''
 })
 const onSaveTeacherForm = async () => {
-	const { result } = await saveTeacherForm(data)
+	const { result } = await saveTeacherForm(teacherForm)
 	const success = result == null
 	ElMessage({
 		message: success ? "保存成功": result,

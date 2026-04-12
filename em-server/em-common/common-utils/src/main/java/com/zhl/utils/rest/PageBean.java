@@ -1,9 +1,9 @@
 package com.zhl.utils.rest;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import java.util.List;
 import java.lang.Long;
-import lombok.Data;
 
 @Data
 @AllArgsConstructor

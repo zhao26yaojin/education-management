@@ -1,9 +1,9 @@
 package com.zhl.utils.rest;
 
-import java.io.Serializable;
-import java.lang.String;
 import lombok.Data;
 import java.lang.Long;
+import java.io.Serializable;
+import java.lang.String;
 
 @Data
 public class RestResponse<T> implements Serializable {

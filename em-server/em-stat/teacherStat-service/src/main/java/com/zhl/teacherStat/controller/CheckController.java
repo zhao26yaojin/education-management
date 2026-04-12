@@ -1,12 +1,12 @@
 package com.zhl.teacherStat.controller;
 
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
-import java.lang.String;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import com.zhl.utils.rest.RestResponse;
+import lombok.extern.slf4j.Slf4j;
+import java.lang.String;
 
 @RestController
 @RequestMapping("/support")

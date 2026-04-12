@@ -1,9 +1,9 @@
 package com.zhl.education.model.qo;
 
+import lombok.Data;
 import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
-import lombok.Data;
 
 @Data
 public class TeacherQo {

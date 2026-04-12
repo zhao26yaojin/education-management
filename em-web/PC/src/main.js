@@ -1,9 +1,9 @@
-import "./index.css"
-import "@/assets/reset.css"
 import App from "./App"
-import { createApp } from "vue"
-import router from "@/router/index"
+import "./index.css"
 import permission from "@/router/permission"
+import "@/assets/reset.css"
+import router from "@/router/index"
+import { createApp } from "vue"
 
 const app = createApp(App)
 app.use(router)

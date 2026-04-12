@@ -28,8 +28,8 @@
 	</div>
 </template>
 <script setup>
-import { reactive, onMounted } from "vue"
 import { getPage as getCoursePage } from "@/api/edu/course"
+import { onMounted, reactive } from "vue"
 
 const params = reactive({
 	id: '',

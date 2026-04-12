@@ -1,7 +1,7 @@
 <template>
 </template>
 <script setup>
-import { onHide, onShow, onLaunch } from "@dcloudio/uni-app"
+import { onHide, onLaunch, onShow } from "@dcloudio/uni-app"
 
 onLaunch(() => console.log("App Launch"))
 onShow(() => console.log("App Show"))

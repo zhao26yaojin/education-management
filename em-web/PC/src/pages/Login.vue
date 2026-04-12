@@ -29,11 +29,11 @@
 	</div>
 </template>
 <script setup>
-import { reactive } from "vue"
-import useUserStore from "@/store/modules/user"
-import { useRouter } from "vue-router"
-import { login } from "@/api/sys/user"
 import router from "@/router/index"
+import useUserStore from "@/store/modules/user"
+import { login } from "@/api/sys/user"
+import { reactive } from "vue"
+import { useRouter } from "vue-router"
 
 const data = reactive({
 	id: '',

@@ -1,16 +1,16 @@
 package com.zhl.education.controller;
 
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import java.lang.String;
-import com.zhl.utils.rest.RestResponse;
-import com.zhl.education.model.qo.TeacherQo;
-import org.springframework.web.bind.annotation.RequestBody;
-import java.util.List;
-import com.zhl.education.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import java.util.List;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import com.zhl.utils.rest.RestResponse;
+import java.lang.String;
+import com.zhl.education.model.qo.TeacherQo;
+import com.zhl.education.service.TeacherService;
 import com.zhl.education.model.vo.TeacherVo;
 
 @RestController

@@ -1,7 +1,7 @@
-import "@/assets/css/reset.css"
-import App from "./App"
-import { createSSRApp } from "vue"
 import uviewPlus from "@/uview-plus"
+import App from "./App"
+import "@/assets/css/reset.css"
+import { createSSRApp } from "vue"
 
 const createApp = () => {
 	const app = createSSRApp(App)

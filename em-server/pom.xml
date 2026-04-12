@@ -18,11 +18,11 @@
 		<com.alibaba.cloud.version>2022.0.0.0</com.alibaba.cloud.version>
 	</properties>
 	<modules>
-		<module>em-spring</module>
-		<module>em-common</module>
-		<module>em-sys</module>
 		<module>em-stat</module>
 		<module>em-edu</module>
+		<module>em-sys</module>
+		<module>em-spring</module>
+		<module>em-common</module>
 	</modules>
 	<dependencyManagement>
 		<dependencies>

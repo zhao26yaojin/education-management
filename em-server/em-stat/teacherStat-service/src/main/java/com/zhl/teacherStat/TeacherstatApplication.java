@@ -1,8 +1,8 @@
 package com.zhl.teacherStat;
 
 import org.springframework.boot.SpringApplication;
-import java.lang.String;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import java.lang.String;
 
 @SpringBootApplication
 public class TeacherstatApplication {

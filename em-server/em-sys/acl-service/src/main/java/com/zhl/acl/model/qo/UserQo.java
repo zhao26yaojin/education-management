@@ -1,8 +1,8 @@
 package com.zhl.acl.model.qo;
 
+import lombok.Data;
 import java.lang.Long;
 import java.lang.String;
-import lombok.Data;
 
 @Data
 public class UserQo {

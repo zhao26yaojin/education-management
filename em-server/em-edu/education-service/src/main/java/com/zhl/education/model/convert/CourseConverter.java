@@ -1,10 +1,10 @@
 package com.zhl.education.model.convert;
 
-import com.zhl.education.model.entity.EduCourse;
-import com.google.common.collect.Lists;
-import com.zhl.education.model.vo.CourseVo;
-import java.util.List;
 import org.springframework.beans.BeanUtils;
+import com.zhl.education.model.vo.CourseVo;
+import com.zhl.education.model.entity.EduCourse;
+import java.util.List;
+import com.google.common.collect.Lists;
 
 public class CourseConverter {
 

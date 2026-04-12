@@ -1,15 +1,15 @@
 package com.zhl.education.controller;
 
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.GetMapping;
-import com.zhl.utils.rest.PageBean;
-import org.springframework.web.bind.annotation.RequestMapping;
-import com.zhl.utils.rest.RestResponse;
-import com.zhl.utils.rest.PageParam;
-import com.zhl.education.model.vo.CourseVo;
+import org.springframework.beans.factory.annotation.Autowired;
 import com.zhl.education.model.qo.CourseQo;
 import com.zhl.education.service.CourseService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.zhl.education.model.vo.CourseVo;
+import org.springframework.web.bind.annotation.GetMapping;
+import com.zhl.utils.rest.PageBean;
+import com.zhl.utils.rest.PageParam;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import com.zhl.utils.rest.RestResponse;
 
 @RestController
 @RequestMapping("/course")
