@@ -1,0 +1,19 @@
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: education-service
+          uri: lb://education-service
+          predicates:
+            - Path=/education/**
+        - id: teacherStat-service
+          uri: lb://teacherStat-service
+          predicates:
+            - Path=/teacherStat/**
+        - id: acl-service
+          uri: lb://acl-service
+          predicates:
+            - Path=/acl/**

@@ -1,0 +1,207 @@
+# Docker Compose - education management [Test (middleware + apps)]
+# 使用方法: docker-compose -f docker-compose-test.yml up -d --build
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: em-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      TZ: Asia/Shanghai
+    ports:
+      - 3306:3306
+    volumes:
+      - em-mysql-data:/var/lib/mysql
+      - ../db:/docker-entrypoint-initdb.d:ro
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    healthcheck:
+      test:
+        - CMD
+        - mysqladmin
+        - ping
+        - -h
+        - localhost
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    networks:
+      - em-network
+  redis:
+    image: redis:7-alpine
+    container_name: em-redis
+    restart: always
+    ports:
+      - ${REDIS_PORT}:6379
+    volumes:
+      - em-redis-data:/data
+    healthcheck:
+      test:
+        - CMD
+        - redis-cli
+        - ping
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - em-network
+  nacos:
+    image: nacos/nacos-server:v2.2.3
+    container_name: em-nacos
+    platform: linux/amd64
+    restart: always
+    environment:
+      MODE: ${NACOS_MODE}
+      SPRING_DATASOURCE_PLATFORM: mysql
+      MYSQL_SERVICE_HOST: mysql
+      MYSQL_SERVICE_PORT: 3306
+      MYSQL_SERVICE_DB_NAME: nacos_config
+      MYSQL_SERVICE_USER: root
+      MYSQL_SERVICE_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      NACOS_AUTH_ENABLE: ${NACOS_AUTH_ENABLE}
+      NACOS_AUTH_TOKEN: ${NACOS_AUTH_TOKEN}
+      NACOS_AUTH_IDENTITY_KEY: ${NACOS_AUTH_IDENTITY_KEY}
+      NACOS_AUTH_IDENTITY_VALUE: ${NACOS_AUTH_IDENTITY_VALUE}
+      JVM_XMS: 256m
+      JVM_XMX: 512m
+    ports:
+      - 8848:8848
+      - 9848:9848
+    volumes:
+      - em-nacos-data:/home/nacos/data
+    depends_on:
+      mysql:
+        condition: service_healthy
+    healthcheck:
+      test:
+        - CMD
+        - curl
+        - -f
+        - http://localhost:8848/nacos/actuator/health
+      interval: 15s
+      timeout: 10s
+      retries: 10
+      start_period: 30s
+    networks:
+      - em-network
+  kafka:
+    image: bitnamilegacy/kafka:3.7
+    container_name: em-kafka
+    restart: always
+    environment:
+      KAFKA_CFG_NODE_ID: ${KAFKA_BROKER_ID}
+      KAFKA_CFG_PROCESS_ROLES: broker,controller
+      KAFKA_CFG_CONTROLLER_QUORUM_VOTERS: ${KAFKA_BROKER_ID}@kafka:9093
+      KAFKA_CFG_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_CFG_LISTENERS: PLAINTEXT://:9092,CONTROLLER://:9093
+      KAFKA_CFG_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT
+      KAFKA_CFG_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      ALLOW_PLAINTEXT_LISTENER: "yes"
+    ports:
+      - 9092:9092
+    volumes:
+      - em-kafka-data:/bitnami/kafka
+    networks:
+      - em-network
+  spring-gateway:
+    build:
+      context: ../../../education-management/em-server/em-spring/spring-gateway
+      dockerfile: Dockerfile
+    container_name: em-spring-gateway
+    restart: always
+    ports:
+      - 5003:5003
+    environment:
+      SPRING_PROFILES_ACTIVE: test
+    depends_on:
+      nacos:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - em-network
+  education-service:
+    build:
+      context: ../../../education-management/em-server/em-edu/education-service
+      dockerfile: Dockerfile
+    container_name: em-education-service
+    restart: always
+    ports:
+      - 5005:5005
+    environment:
+      SPRING_PROFILES_ACTIVE: test
+    depends_on:
+      nacos:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - em-network
+  teacherStat-service:
+    build:
+      context: ../../../education-management/em-server/em-stat/teacherStat-service
+      dockerfile: Dockerfile
+    container_name: em-teacherStat-service
+    restart: always
+    ports:
+      - 5006:5006
+    environment:
+      SPRING_PROFILES_ACTIVE: test
+    depends_on:
+      nacos:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - em-network
+  acl-service:
+    build:
+      context: ../../../education-management/em-server/em-sys/acl-service
+      dockerfile: Dockerfile
+    container_name: em-acl-service
+    restart: always
+    ports:
+      - 5007:5007
+    environment:
+      SPRING_PROFILES_ACTIVE: test
+    depends_on:
+      nacos:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - em-network
+  em-pc-web:
+    build:
+      context: ../../../education-management/em-web/PC
+      dockerfile: Dockerfile
+    container_name: em-pc-web
+    restart: always
+    ports:
+      - ${PC_WEB_PORT}:80
+    depends_on:
+      - spring-gateway
+    networks:
+      - em-network
+  em-mobile-web:
+    build:
+      context: ../../../education-management/em-web/Mobile
+      dockerfile: Dockerfile
+    container_name: em-mobile-web
+    restart: always
+    ports:
+      - ${MOBILE_WEB_PORT}:80
+    depends_on:
+      - spring-gateway
+    networks:
+      - em-network
+networks:
+  em-network:
+    driver: bridge
+volumes:
+  em-mysql-data:
+  em-redis-data:
+  em-nacos-data:
+  em-kafka-data:
