@@ -1,12 +1,14 @@
 #!/bin/bash
-# education management - Docker 一键部署脚本
+# education management - Docker 中间件一键部署脚本
 # 使用方法:
-#   ./deploy.sh dev   # 仅启动开发环境中间件 (MySQL/Redis/Nacos/Kafka)
-#   ./deploy.sh test  # 启动测试环境完整服务 (中间件 + 全部前后端应用)
+#   ./deploy.sh dev   # 启动 dev 中间件 (Nacos embedded)
+#   ./deploy.sh test  # 启动 test 中间件 (Nacos + MySQL)
 #   ./deploy.sh       # 默认 test
 #
-# 注意: Nacos 配置推送由 code-tool 的 Deploy Nacos 步骤通过 OpenAPI 完成,
-#       本脚本只负责拉起容器, 不再调用 init-nacos.sh.
+# 注意:
+#   - 本脚本只负责中间件 (MySQL/Redis/Nacos/Kafka), 不包含应用容器
+#   - 应用部署由 code-tool 的 Deploy Server / Deploy PC Web / Deploy Mobile Web 负责
+#   - Nacos 配置推送由 Deploy Nacos 步骤通过 OpenAPI 完成
 
 set -e
 
@@ -22,54 +24,39 @@ if [ ! -f "$SCRIPT_DIR/$COMPOSE_FILE" ]; then
 fi
 
 echo "=============================="
-echo "  education management Docker Deploy [$ENV]"
+echo "  education management Middleware Deploy [$ENV]"
 echo "  using $COMPOSE_FILE"
 echo "=============================="
 
 cd "$SCRIPT_DIR"
 
-if [ "$ENV" = "test" ]; then
-    # Step 1: Maven 构建 (使用 docker profile)
-    echo ""
-    echo "[Step 1/3] Building Java services with Maven..."
-    (cd "$SCRIPT_DIR/../../../education-management/em-server" && mvn clean package -P${ENV} -DskipTests)
-    echo "Maven build completed."
-
-    # Step 2: Docker Compose 构建镜像
-    echo ""
-    echo "[Step 2/3] Building Docker images..."
-    docker-compose -f "$COMPOSE_FILE" build
-    echo "Docker images built."
-fi
-
-# Step 3: 启动中间件 (+ test 环境下的应用服务)
+# 启动中间件
 echo ""
-echo "[Step 3/3] Starting middleware services..."
+echo "Starting MySQL / Redis / Kafka ..."
 docker-compose -f "$COMPOSE_FILE" up -d mysql redis kafka
 echo "Waiting for MySQL to be ready..."
 sleep 15
+
+echo ""
+echo "Starting Nacos ..."
 docker-compose -f "$COMPOSE_FILE" up -d nacos
 echo "Waiting for Nacos to be ready..."
 sleep 20
 
-if [ "$ENV" = "test" ]; then
-    echo "Starting application services..."
-    docker-compose -f "$COMPOSE_FILE" up -d
-fi
-
 echo ""
 echo "=============================="
-echo "  Containers started!"
-echo "  Run 'Deploy Nacos' from code-tool to push configs."
+echo "  Middleware containers started!"
 echo "=============================="
 echo ""
 echo "Service URLs:"
-echo "  - Nacos Console: http://localhost:8848/nacos  (nacos/nacos)"
-if [ "$ENV" = "test" ]; then
-    echo "  - PC Web:        http://localhost:${PC_WEB_PORT:-8080}"
-    echo "  - Mobile Web:    http://localhost:${MOBILE_WEB_PORT:-8081}"
-    echo "  - Gateway:       http://localhost:5003"
-fi
+echo "  - Nacos Console: http://localhost:8848/nacos"
+echo ""
+echo "Next steps:"
+echo "  - Deploy Nacos     # 推送配置到 Nacos"
+echo "  - Deploy DB        # 创建业务数据库表"
+echo "  - Deploy Server    # 部署后端服务"
+echo "  - Deploy PC Web    # 部署 PC 前端"
+echo "  - Deploy Mobile Web # 部署移动端前端"
 echo ""
 echo "Useful commands:"
 echo "  docker-compose -f $COMPOSE_FILE ps       # 查看服务状态"

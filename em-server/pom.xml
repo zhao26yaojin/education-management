@@ -98,7 +98,8 @@
 			<id>dev</id>
 			<properties>
 				<profiles.active>dev</profiles.active>
-				<nacos.url>nacos:8848</nacos.url>
+				<nacos.url>127.0.0.1:8848</nacos.url>
+				<nacos.pw>nacos</nacos.pw>
 			</properties>
 			<activation>
 				<activeByDefault>true</activeByDefault>
@@ -109,6 +110,7 @@
 			<properties>
 				<profiles.active>test</profiles.active>
 				<nacos.url>nacos:8848</nacos.url>
+				<nacos.pw>nacos</nacos.pw>
 			</properties>
 		</profile>
 	</profiles>

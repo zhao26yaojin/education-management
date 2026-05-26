@@ -10,6 +10,8 @@ spring:
   cloud:
     nacos:
       server-addr: @nacos.url@
+      username: nacos
+      password: @nacos.pw@
       discovery:
         namespace: @profiles.active@
         group: @app.group@

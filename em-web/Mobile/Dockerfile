@@ -9,6 +9,6 @@ RUN npm run build:h5
 FROM nginx:alpine
 COPY --from=build /app/dist/build/h5 /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/conf.d/default.conf
-EXPOSE 80
+EXPOSE 5001
 
 CMD ["nginx", "-g", "daemon off;"]

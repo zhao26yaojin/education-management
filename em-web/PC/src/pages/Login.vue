@@ -40,7 +40,7 @@ const data = reactive({
 	name: '',
 	parent_id: ''
 })
-userStore = useUserStore()
+const userStore = useUserStore()
 const onLogin = async () => {
 	const { result } = await login(data)
 	const success = result != null

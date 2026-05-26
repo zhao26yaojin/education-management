@@ -2,7 +2,7 @@ import router from "@/router/index"
 import useRoutesStore from "@/store/modules/routes"
 import useUserStore from "@/store/modules/user"
 
-whiteList = [
+const whiteList = [
 	"/login",
 	"/register"
 ]

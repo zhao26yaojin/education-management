@@ -4,18 +4,11 @@ import { ref } from "vue"
 
 const useUserStore = defineStore("user", () => {
 	let userInfo = ref(null)
-	let token = ref("")
 	const localToken = localStorage.getItem("token")
 	if (localToken) {
 		token.value = localToken
 	}
 
-	const setUserInfo = result => {
-		token.value = result.token
-		userInfo.value = result
-		userInfo.value.token = ""
-		localStorage.setItem(token, token.value)
-	}
 	const getUserInfo = () => {
 		if (null == userInfo) {
 			initUserInfo(userInfo)
@@ -29,6 +22,12 @@ const useUserStore = defineStore("user", () => {
 
 		userInfo.value = loginInfo
 	}
-	return { setUserInfo, getUserInfo }
+	const setUserInfo = result => {
+		token.value = result.token
+		userInfo.value = result
+		userInfo.value.token = ""
+		localStorage.setItem(token, token.value)
+	}
+	return { getUserInfo, setUserInfo }
 })
 export default useUserStore

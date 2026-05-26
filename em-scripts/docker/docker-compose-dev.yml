@@ -1,5 +1,5 @@
-# Docker Compose - education management [Dev (middleware only)]
-# 使用方法: docker-compose -f docker-compose-dev.yml up -d --build
+# Docker Compose - education management [Dev (middleware only, Nacos embedded)]
+# 使用方法: docker-compose -f docker-compose-dev.yml up -d
 
 services:
   mysql:
@@ -53,12 +53,6 @@ services:
     restart: always
     environment:
       MODE: ${NACOS_MODE}
-      SPRING_DATASOURCE_PLATFORM: mysql
-      MYSQL_SERVICE_HOST: mysql
-      MYSQL_SERVICE_PORT: 3306
-      MYSQL_SERVICE_DB_NAME: nacos_config
-      MYSQL_SERVICE_USER: root
-      MYSQL_SERVICE_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       NACOS_AUTH_ENABLE: ${NACOS_AUTH_ENABLE}
       NACOS_AUTH_TOKEN: ${NACOS_AUTH_TOKEN}
       NACOS_AUTH_IDENTITY_KEY: ${NACOS_AUTH_IDENTITY_KEY}
@@ -70,9 +64,6 @@ services:
       - 9848:9848
     volumes:
       - em-nacos-data:/home/nacos/data
-    depends_on:
-      mysql:
-        condition: service_healthy
     healthcheck:
       test:
         - CMD
@@ -107,6 +98,7 @@ services:
       - em-network
 networks:
   em-network:
+    name: em-network
     driver: bridge
 volumes:
   em-mysql-data:
