@@ -9,17 +9,17 @@
 		</router-view>
 	</div>
 	<div class="form">
-		<el-form :model="loginLogin" class="form-inline">
+		<el-form :model="userLogin" class="form-inline">
 			<el-form-item label="id">
-				<el-input v-model="loginLogin.id" placeholder="id" clearable>
+				<el-input v-model="userLogin.id" placeholder="id" clearable>
 				</el-input>
 			</el-form-item>
 			<el-form-item label="名字">
-				<el-input v-model="loginLogin.name" placeholder="name" clearable>
+				<el-input v-model="userLogin.name" placeholder="name" clearable>
 				</el-input>
 			</el-form-item>
 			<el-form-item label="父级id">
-				<el-input v-model="loginLogin.parentId" placeholder="parentId" clearable>
+				<el-input v-model="userLogin.parentId" placeholder="parentId" clearable>
 				</el-input>
 			</el-form-item>
 			<el-form-item>

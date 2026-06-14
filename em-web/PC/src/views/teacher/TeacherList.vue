@@ -27,21 +27,21 @@
 			<el-table-column prop="avatar" label="头像">
 			</el-table-column>
 		</el-table>
-		<el-form :model="teacherForm" class="form-inline" :inline="true">
+		<el-form :model="teacher" class="form-inline" :inline="true">
 			<el-form-item label="id">
-				<el-input v-model="teacherForm.id" placeholder="id" clearable>
+				<el-input v-model="teacher.id" placeholder="id" clearable>
 				</el-input>
 			</el-form-item>
 			<el-form-item label="名字">
-				<el-input v-model="teacherForm.name" placeholder="name" clearable>
+				<el-input v-model="teacher.name" placeholder="name" clearable>
 				</el-input>
 			</el-form-item>
 			<el-form-item label="级别">
-				<el-input v-model="teacherForm.level" placeholder="level" clearable>
+				<el-input v-model="teacher.level" placeholder="level" clearable>
 				</el-input>
 			</el-form-item>
 			<el-form-item label="头像">
-				<el-input v-model="teacherForm.avatar" placeholder="avatar" clearable>
+				<el-input v-model="teacher.avatar" placeholder="avatar" clearable>
 				</el-input>
 			</el-form-item>
 			<el-form-item>

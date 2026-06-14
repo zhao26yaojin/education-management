@@ -13,11 +13,20 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.zhl.em</groupId>
+			<artifactId>acl-service</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.zhl.em</groupId>
 			<artifactId>common-utils</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>jakarta.servlet</groupId>
 			<artifactId>jakarta.servlet-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

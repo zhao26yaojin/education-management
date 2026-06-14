@@ -10,10 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.zhl.utils.rest.RestResponse;
 import com.zhl.services.security.SecurityUtil;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import java.lang.String;
-import com.zhl.acl.model.qo.UserQo;
+import com.zhl.acl.model.qo.UserLoginQo;
+import com.zhl.acl.model.vo.UserLoginVo;
 import com.zhl.acl.service.UserService;
-import com.zhl.acl.model.vo.UserVo;
 
 @RestController
 @RequestMapping("/user")
@@ -23,10 +24,10 @@ public class UserController {
 	private UserService userService;
 
 	@PostMapping("/login")
-	public RestResponse<UserVo> login(@RequestBody UserQo userQo){
-		UserVo userVo = userService.login(userQo);
-		if (userVo != null) {
-			return RestResponse.ok(userVo);
+	public RestResponse<UserLoginVo> login(@RequestBody UserLoginQo loginQo){
+		UserLoginVo loginVo = userService.login(loginQo);
+		if (loginVo != null) {
+			return RestResponse.ok(loginVo);
 		}
 		else {
 			return RestResponse.error(ExceptionConstants.NAME_PASSWORD_FAIL);
@@ -34,11 +35,11 @@ public class UserController {
 	}
 
 	@GetMapping("/loginInfo")
-	public RestResponse<UserVo> loginInfo(){
-		UserQo userQo = new UserQo();
-		userQo.setId(SecurityUtil.getUserId());
-		UserVo userVo = userService.selectVo(userQo);
-		return RestResponse.ok(userVo);
+	public RestResponse<UserLoginVo> loginInfo(){
+		UserLoginQo loginQo = new UserLoginQo();
+		loginQo.setId(SecurityUtil.getUserId());
+		UserLoginVo loginVo = userService.selectLoginVo(loginQo);
+		return RestResponse.ok(loginVo);
 	}
 
 }

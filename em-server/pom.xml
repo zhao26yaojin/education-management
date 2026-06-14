@@ -28,6 +28,11 @@
 		<dependencies>
 			<dependency>
 				<groupId>com.zhl.em</groupId>
+				<artifactId>acl-service</artifactId>
+				<version>0.0.1-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>com.zhl.em</groupId>
 				<artifactId>common-services</artifactId>
 				<version>0.0.1-SNAPSHOT</version>
 			</dependency>
