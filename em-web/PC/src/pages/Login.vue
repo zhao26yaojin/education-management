@@ -35,14 +35,14 @@ import { login } from "@/api/sys/user"
 import { reactive } from "vue"
 import { useRouter } from "vue-router"
 
-const data = reactive({
+const userLogin = reactive({
 	id: '',
 	name: '',
 	parent_id: ''
 })
 const userStore = useUserStore()
 const onLogin = async () => {
-	const { result } = await login(data)
+	const { result } = await login(userLogin)
 	const success = result != null
 	if (success) {
 		userStore.setUserInfo(result)

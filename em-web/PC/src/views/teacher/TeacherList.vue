@@ -27,60 +27,25 @@
 			<el-table-column prop="avatar" label="头像">
 			</el-table-column>
 		</el-table>
-		<el-form :model="teacher" class="form-inline" :inline="true">
-			<el-form-item label="id">
-				<el-input v-model="teacher.id" placeholder="id" clearable>
-				</el-input>
-			</el-form-item>
-			<el-form-item label="名字">
-				<el-input v-model="teacher.name" placeholder="name" clearable>
-				</el-input>
-			</el-form-item>
-			<el-form-item label="级别">
-				<el-input v-model="teacher.level" placeholder="level" clearable>
-				</el-input>
-			</el-form-item>
-			<el-form-item label="头像">
-				<el-input v-model="teacher.avatar" placeholder="avatar" clearable>
-				</el-input>
-			</el-form-item>
-			<el-form-item>
-				<el-button type="primary" @click="onSaveTeacherForm">Save</el-button>
-			</el-form-item>
-		</el-form>
 	</div>
 </template>
 <script setup>
-import { getList as getTeacherList, saveForm as saveTeacherForm } from "@/api/edu/teacher"
+import { getList as getTeacherList } from "@/api/edu/teacher"
 import { onMounted, reactive } from "vue"
 
-const params = reactive({
+const teacherQuery = reactive({
 	id: '',
 	name: '',
 	level: ''
 })
 const teacherList = reactive([])
 const onGetTeacherList = async () => {
-	const { result } = await getTeacherList(params)
+	const { result } = await getTeacherList(teacherQuery)
 	teacherList.splice(0, teacherList.length)
 	if (result && result.length > 0) {
 		teacherList.push(...result)
 	}
 
-}
-const data = reactive({
-	id: '',
-	name: '',
-	level: '',
-	avatar: ''
-})
-const onSaveTeacherForm = async () => {
-	const { result } = await saveTeacherForm(data)
-	const success = result == null
-	ElMessage({
-		message: success ? "保存成功": result,
-		type: success ? "success": "error"
-	})
 }
 onMounted(() => onGetTeacherList())
 

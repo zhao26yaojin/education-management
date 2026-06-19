@@ -31,14 +31,14 @@
 import { getPage as getCoursePage } from "@/api/edu/course"
 import { onMounted, reactive } from "vue"
 
-const params = reactive({
+const courseQuery = reactive({
 	id: '',
 	name: ''
 })
 const coursePage = reactive([])
 const onGetCoursePage = async () => {
-	const { result } = await getCoursePage(params)
-	params.total = result.total
+	const { result } = await getCoursePage(courseQuery)
+	courseQuery.total = result.total
 	coursePage.splice(0, coursePage.length)
 	if (result.records && result.records.length > 0) {
 		coursePage.push(...result)

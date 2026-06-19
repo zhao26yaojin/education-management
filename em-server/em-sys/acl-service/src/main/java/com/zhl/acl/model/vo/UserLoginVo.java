@@ -13,4 +13,10 @@ public class UserLoginVo {
 
 	private Long parentId;
 
+	private String userKey;
+
+	private String token;
+
+	private Long loginTime;
+
 }
