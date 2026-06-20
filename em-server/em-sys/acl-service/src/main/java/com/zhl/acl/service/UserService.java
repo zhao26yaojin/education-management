@@ -29,4 +29,9 @@ public class UserService extends ServiceImpl<UserMapper, SysUser> {
 		return this.getOne(queryWrapper, false);
 	}
 
+	public UserLoginVo selectLoginVo(UserLoginQo loginQo){
+		SysUser entity = selectEntity(loginQo);
+		return UserConverter.entityToVo(entity);
+	}
+
 }
