@@ -1,25 +1,12 @@
 <template>
-	<div class="container">
-		<div class="sidebar">
-			<h5 class="title">education management</h5>
-			<el-menu height="100%" background-color="#ffb8e7" active-text-color="#04718" text-color="#fff" router>
-			</el-menu>
-		</div>
-		<router-view>
-		</router-view>
-	</div>
 	<div class="form">
 		<el-form :model="userLogin" class="form-inline">
-			<el-form-item label="id">
-				<el-input v-model="userLogin.id" placeholder="id" clearable>
-				</el-input>
-			</el-form-item>
-			<el-form-item label="名字">
+			<el-form-item label="用户名">
 				<el-input v-model="userLogin.name" placeholder="name" clearable>
 				</el-input>
 			</el-form-item>
-			<el-form-item label="父级id">
-				<el-input v-model="userLogin.parentId" placeholder="parentId" clearable>
+			<el-form-item label="密码">
+				<el-input v-model="userLogin.password" placeholder="password" clearable>
 				</el-input>
 			</el-form-item>
 			<el-form-item>
@@ -36,9 +23,8 @@ import { reactive } from "vue"
 import { useRouter } from "vue-router"
 
 const userLogin = reactive({
-	id: '',
 	name: '',
-	parent_id: ''
+	password: ''
 })
 const userStore = useUserStore()
 const onLogin = async () => {
@@ -57,32 +43,14 @@ const onLogin = async () => {
 
 </script>
 <style scoped>
-.container {
-	min-height: 100vh;
-	display: flex;
-}
-
-.sidebar {
-	width: 200px;
-	background-color: #ffb8e7;
-}
-
-.title {
-	height: 50px;
-	color: white;
-	font-size: 20px;
-	text-align: center;
-	line-height: 50px;
-}
-
-form {
+.form {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	height: 100%;
 }
 
-form-inline {
+.form-inline {
 	padding: 50px;
 }
 

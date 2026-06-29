@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<el-form :model="teacher" class="form-inline" :inline="true">
+		<el-form :model="teacher" :inline="true">
 			<el-form-item label="id">
 				<el-input v-model="teacher.id" placeholder="id" clearable>
 				</el-input>
@@ -44,8 +44,5 @@ const onSaveTeacherForm = async () => {
 
 </script>
 <style scoped>
-form-inline {
-}
-
 
 </style>

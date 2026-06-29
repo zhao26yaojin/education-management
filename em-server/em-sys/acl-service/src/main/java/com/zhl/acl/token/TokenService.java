@@ -37,6 +37,10 @@ public class TokenService
      */
     public void createToken(UserLoginVo loginUser)
     {
+        if (loginUser == null) {
+            return;
+        }
+
         String userKey = UUID.fastUUID().toString();
         Long userId = loginUser.getId();
         String userName = loginUser.getName();

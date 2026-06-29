@@ -11,7 +11,13 @@ const requestError = error => {
 }
 service.interceptors.request.use(requestSuccess, requestError)
 const responseSuccess = response => {
-	return response.data
+	const resData = response.data
+	if (resData.code != 200) {
+		ElMessage.error(resData.message || "请求失败")
+		return Promise.reject(resData)
+	}
+
+	return resData
 }
 const responseError = error => {
 	return Promise.reject(error)

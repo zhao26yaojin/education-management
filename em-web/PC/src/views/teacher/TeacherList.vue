@@ -57,7 +57,7 @@ onMounted(() => onGetTeacherList())
 	padding-top: 30px;
 }
 
-form-inline {
+.form-inline {
 }
 
 

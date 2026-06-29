@@ -1,9 +1,10 @@
 package com.zhl.utils.acl;
 
 import java.util.Map;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import java.nio.charset.StandardCharsets;
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.security.Keys;
 import com.zhl.utils.constant.TokenConstants;
 import com.zhl.utils.constant.SecurityConstants;
 import com.zhl.utils.text.Convert;
@@ -16,7 +17,7 @@ import com.zhl.utils.text.Convert;
 public class JwtUtil
 {
 	public static String SECRET = TokenConstants.SECRET;
-	
+
     /**
      * 从数据声明生成令牌
      *
@@ -25,10 +26,13 @@ public class JwtUtil
      */
     public static String createToken(Map<String, Object> claims)
     {
-        String token = Jwts.builder().setClaims(claims).signWith(SignatureAlgorithm.HS512, SECRET).compact();
+        String token = Jwts.builder()
+                .setClaims(claims)
+                .signWith(Keys.hmacShaKeyFor(SECRET.getBytes(StandardCharsets.UTF_8)))
+                .compact();
         return token;
     }
-	
+
 	/**
      * 根据令牌获取用户标识
      * 
@@ -40,7 +44,7 @@ public class JwtUtil
         Claims claims = parseToken(token);
         return getValue(claims, SecurityConstants.USER_KEY);
     }
-	
+
 	/**
      * 从令牌中获取数据声明
      *
@@ -49,9 +53,13 @@ public class JwtUtil
      */
     public static Claims parseToken(String token)
     {
-        return Jwts.parser().setSigningKey(SECRET).parseClaimsJws(token).getBody();
+        return Jwts.parserBuilder()
+                .setSigningKey(Keys.hmacShaKeyFor(SECRET.getBytes(StandardCharsets.UTF_8)))
+                .build()
+                .parseClaimsJws(token)
+                .getBody();
     }
-	
+
 	/**
      * 根据身份信息获取键值
      * 

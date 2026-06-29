@@ -11,4 +11,6 @@ public class UserLoginQo {
 
 	private String name;
 
+	private String password;
+
 }

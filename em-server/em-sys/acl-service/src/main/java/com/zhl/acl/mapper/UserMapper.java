@@ -17,6 +17,7 @@ public interface UserMapper extends BaseMapper<SysUser> {
 		LambdaQueryWrapper<SysUser> wrapper = Wrappers.lambdaQuery(SysUser.class);
 		wrapper.eq(loginQo.getId() != null, SysUser::getId, loginQo.getId());
 		wrapper.eq(StringUtils.isNotEmpty(loginQo.getName()), SysUser::getName, loginQo.getName());
+		wrapper.eq(StringUtils.isNotEmpty(loginQo.getPassword()), SysUser::getPassword, loginQo.getPassword());
 		return wrapper;
 	}
 

@@ -1,6 +1,7 @@
 package com.zhl.acl.model.vo;
 
 import lombok.Data;
+import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
 
@@ -11,7 +12,17 @@ public class UserLoginVo {
 
 	private String name;
 
-	private Long parentId;
+	private String password;
+
+	private String gender;
+
+	private String email;
+
+	private String phone;
+
+	private Integer status;
+
+	private Long deleted;
 
 	private String userKey;
 
