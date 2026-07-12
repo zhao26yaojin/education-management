@@ -4,6 +4,7 @@ import { ref } from "vue"
 
 const useUserStore = defineStore("user", () => {
 	let userInfo = ref(null)
+	let token = ref(null)
 	const localToken = localStorage.getItem("token")
 	if (localToken) {
 		token.value = localToken
@@ -28,6 +29,6 @@ const useUserStore = defineStore("user", () => {
 		userInfo.value.token = ""
 		localStorage.setItem(token, token.value)
 	}
-	return { getUserInfo, setUserInfo }
+	return { token, getUserInfo, setUserInfo }
 })
 export default useUserStore
