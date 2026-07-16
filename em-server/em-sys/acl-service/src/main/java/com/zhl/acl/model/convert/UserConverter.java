@@ -2,17 +2,17 @@ package com.zhl.acl.model.convert;
 
 import org.springframework.beans.BeanUtils;
 import com.zhl.acl.model.entity.SysUser;
-import com.zhl.acl.model.vo.UserLoginVo;
+import com.zhl.acl.model.vo.UserAuthVo;
 
 public class UserConverter {
 
-	public static UserLoginVo entityToVo(SysUser entity){
-		UserLoginVo loginVo = new UserLoginVo();
+	public static UserAuthVo entityToVo(SysUser entity){
+		UserAuthVo authVo = new UserAuthVo();
 		if (entity == null) {
 			return null;
 		}
-		BeanUtils.copyProperties(entity, loginVo);
-		return loginVo;
+		BeanUtils.copyProperties(entity, authVo);
+		return authVo;
 	}
 
 }

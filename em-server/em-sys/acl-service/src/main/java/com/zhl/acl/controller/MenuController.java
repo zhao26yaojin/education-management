@@ -17,7 +17,7 @@ public class MenuController {
 	@Autowired
 	private MenuService menuService;
 
-	@GetMapping("/tree")
+	@GetMapping("/role/tree")
 	public RestResponse<List<MenuRoleNode>> roleTree(MenuRoleQo roleQo){
 		List<MenuRoleNode> nodeList = menuService.selectVoTree(roleQo);
 		return RestResponse.ok(nodeList);

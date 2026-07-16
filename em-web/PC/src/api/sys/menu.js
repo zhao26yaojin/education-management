@@ -1,8 +1,8 @@
 import service from "@/utils/request"
 
-export function getList(params){
+export function getRoleTree(params){
 	return service({
-		url: `/acl/menu/list`,
+		url: `/acl/menu/role/tree`,
 		method: "get",
 		params: params
 	})

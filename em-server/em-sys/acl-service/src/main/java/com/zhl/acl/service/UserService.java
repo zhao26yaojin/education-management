@@ -6,9 +6,9 @@ import org.springframework.stereotype.Service;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zhl.acl.model.entity.SysUser;
 import com.zhl.acl.token.TokenService;
+import com.zhl.acl.model.qo.UserAuthQo;
+import com.zhl.acl.model.vo.UserAuthVo;
 import com.zhl.acl.model.convert.UserConverter;
-import com.zhl.acl.model.qo.UserLoginQo;
-import com.zhl.acl.model.vo.UserLoginVo;
 import com.zhl.acl.mapper.UserMapper;
 
 @Service
@@ -17,20 +17,20 @@ public class UserService extends ServiceImpl<UserMapper, SysUser> {
 	@Autowired
 	private TokenService tokenService;
 
-	public UserLoginVo login(UserLoginQo loginQo){
-		SysUser entity = selectEntity(loginQo);
-		UserLoginVo loginVo = UserConverter.entityToVo(entity);
-		tokenService.createToken(loginVo);
-		return loginVo;
+	public UserAuthVo login(UserAuthQo authQo){
+		SysUser entity = selectEntity(authQo);
+		UserAuthVo authVo = UserConverter.entityToVo(entity);
+		tokenService.createToken(authVo);
+		return authVo;
 	}
 
-	public SysUser selectEntity(UserLoginQo loginQo){
-		LambdaQueryWrapper<SysUser> queryWrapper = baseMapper.getQueryWrapper(loginQo);
+	public SysUser selectEntity(UserAuthQo authQo){
+		LambdaQueryWrapper<SysUser> queryWrapper = baseMapper.getQueryWrapper(authQo);
 		return this.getOne(queryWrapper, false);
 	}
 
-	public UserLoginVo selectLoginVo(UserLoginQo loginQo){
-		SysUser entity = selectEntity(loginQo);
+	public UserAuthVo selectAuthVo(UserAuthQo authQo){
+		SysUser entity = selectEntity(authQo);
 		return UserConverter.entityToVo(entity);
 	}
 

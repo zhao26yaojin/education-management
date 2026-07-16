@@ -12,7 +12,7 @@ import com.zhl.utils.acl.JwtUtil;
 import com.zhl.services.redis.RedisService;
 import com.zhl.utils.constant.CacheConstants;
 import com.zhl.utils.constant.SecurityConstants;
-import com.zhl.acl.model.vo.UserLoginVo;
+import com.zhl.acl.model.vo.UserAuthVo;
 
 /**
  * token验证处理
@@ -35,7 +35,7 @@ public class TokenService
     /**
      * 创建令牌
      */
-    public void createToken(UserLoginVo loginUser)
+    public void createToken(UserAuthVo loginUser)
     {
         if (loginUser == null) {
             return;
@@ -63,9 +63,9 @@ public class TokenService
      *
      * @return 用户信息
      */
-    public UserLoginVo getLoginUser(String token)
+    public UserAuthVo getLoginUser(String token)
     {
-        UserLoginVo loginUser = null;
+        UserAuthVo loginUser = null;
         try
         {
             if (StringUtils.isNotEmpty(token))
@@ -87,7 +87,7 @@ public class TokenService
      *
      * @param loginUser
      */
-    public void verifyToken(UserLoginVo loginUser)
+    public void verifyToken(UserAuthVo loginUser)
     {
         long loginTime = loginUser.getLoginTime();
         long currentTime = System.currentTimeMillis();
@@ -102,7 +102,7 @@ public class TokenService
      *
      * @param loginUser 登录信息
      */
-    public void refreshToken(UserLoginVo loginUser)
+    public void refreshToken(UserAuthVo loginUser)
     {
         loginUser.setLoginTime(System.currentTimeMillis());
         // loginUser.setExpireTime(loginUser.getLoginTime() + expireTime * MILLIS_MINUTE);

@@ -6,7 +6,7 @@ import java.lang.Long;
 import java.lang.String;
 
 @Data
-public class UserLoginVo {
+public class UserAuthVo {
 
 	private Long id;
 

@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.zhl.utils.rest.RestResponse;
 import com.zhl.services.security.SecurityUtil;
 import java.lang.String;
-import com.zhl.acl.model.qo.UserLoginQo;
-import com.zhl.acl.model.vo.UserLoginVo;
+import com.zhl.acl.model.qo.UserAuthQo;
+import com.zhl.acl.model.vo.UserAuthVo;
 import com.zhl.acl.service.UserService;
 
 @RestController
@@ -22,23 +22,23 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
-	@PostMapping("/login")
-	public RestResponse<UserLoginVo> login(@RequestBody UserLoginQo loginQo){
-		UserLoginVo loginVo = userService.login(loginQo);
-		if (loginVo != null) {
-			return RestResponse.ok(loginVo);
+	@PostMapping("/auth/login")
+	public RestResponse<UserAuthVo> login(@RequestBody UserAuthQo authQo){
+		UserAuthVo authVo = userService.login(authQo);
+		if (authVo != null) {
+			return RestResponse.ok(authVo);
 		}
 		else {
 			return RestResponse.error(ExceptionConstants.NAME_PASSWORD_FAIL);
 		}
 	}
 
-	@GetMapping("/loginInfo")
-	public RestResponse<UserLoginVo> loginInfo(){
-		UserLoginQo loginQo = new UserLoginQo();
-		loginQo.setId(SecurityUtil.getUserId());
-		UserLoginVo loginVo = userService.selectLoginVo(loginQo);
-		return RestResponse.ok(loginVo);
+	@GetMapping("/auth/loginInfo")
+	public RestResponse<UserAuthVo> loginInfo(){
+		UserAuthQo authQo = new UserAuthQo();
+		authQo.setId(SecurityUtil.getUserId());
+		UserAuthVo authVo = userService.selectAuthVo(authQo);
+		return RestResponse.ok(authVo);
 	}
 
 }

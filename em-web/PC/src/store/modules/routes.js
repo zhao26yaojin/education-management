@@ -1,11 +1,12 @@
-import { getList as getMenuList } from "@/api/sys/menu"
+import { getRoleTree as getMenuRoleTree } from "@/api/sys/menu"
 import { defineStore } from "pinia"
-import { getDetail as getRoleMenuDetail } from "@/api/sys/roleMenu"
 import router from "@/router/index"
 import "@/store/modules/routes"
 import useUserStore from "@/store/modules/user"
+import { traverseTree } from "@/utils/treeUtil"
 import { ref } from "vue"
 
+const modules = import.meta.glob("'./../../views/**/*.vue'")
 const useRoutesStore = defineStore("routes", () => {
 	let aclRoutes = ref(null)
 	const getAclRoutes = () => {
@@ -22,12 +23,25 @@ const useRoutesStore = defineStore("routes", () => {
 			return 
 		}
 
-		const roleMenuDetail = await getRoleMenuDetail(userInfo.roleIdList)
-		const menuList = await getMenuList()
-		const menuIdList = roleMenuDetail.result.menuIdList
-		const aclMenuList = menuList.result.filter()
+		const aclMenuList = await getMenuRoleTree(userInfo.role_id)
+		traverseTree(aclMenuList, item => {
+			if (null != item.component) {
+				item.component = loadView(item.component)
+			}
+
+		})
 		aclMenuList.forEach(item => router.addRoute("layout", item))
 		aclRoutes.value = constRoutes
+	}
+	const loadView = view => {
+        let res
+		for (const path in modules) {
+			const dir = path.split("views/")[1].split(".vue")[0]
+			if (dir === view) {
+				res = () => modules[path]()
+			}
+		}
+        return res
 	}
 	return { getAclRoutes, aclRoutes }
 })

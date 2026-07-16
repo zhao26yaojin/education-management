@@ -1,12 +1,12 @@
 <template>
 	<div class="form">
-		<el-form :model="userLogin" class="form-inline">
+		<el-form :model="userAuth" class="form-inline">
 			<el-form-item label="用户名">
-				<el-input v-model="userLogin.name" placeholder="name" clearable>
+				<el-input v-model="userAuth.name" placeholder="name" clearable>
 				</el-input>
 			</el-form-item>
 			<el-form-item label="密码">
-				<el-input v-model="userLogin.password" placeholder="password" clearable>
+				<el-input v-model="userAuth.password" placeholder="password" clearable>
 				</el-input>
 			</el-form-item>
 			<el-form-item>
@@ -22,13 +22,13 @@ import { login } from "@/api/sys/user"
 import { reactive } from "vue"
 import { useRouter } from "vue-router"
 
-const userLogin = reactive({
+const userAuth = reactive({
 	name: '',
 	password: ''
 })
 const userStore = useUserStore()
 const onLogin = async () => {
-	const { result } = await login(userLogin)
+	const { result } = await login(userAuth)
 	const success = result != null
 	if (success) {
 		userStore.setUserInfo(result)
