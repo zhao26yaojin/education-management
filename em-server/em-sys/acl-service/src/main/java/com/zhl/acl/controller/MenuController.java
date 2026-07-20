@@ -18,9 +18,9 @@ public class MenuController {
 	private MenuService menuService;
 
 	@GetMapping("/role/tree")
-	public RestResponse<List<MenuRoleNode>> roleTree(MenuRoleQo roleQo){
-		List<MenuRoleNode> nodeList = menuService.selectVoTree(roleQo);
-		return RestResponse.ok(nodeList);
+	public RestResponse<List<MenuRoleNode>> roleTree(MenuRoleQo menuRoleQo){
+		List<MenuRoleNode> roleNodeList = menuService.selectVoTree(menuRoleQo);
+		return RestResponse.ok(roleNodeList);
 	}
 
 }

@@ -8,16 +8,16 @@ import com.google.common.collect.Lists;
 
 public class CourseConverter {
 
-	public static List<CourseVo> entityListToVoList(List<EduCourse> courseList){
-		List<CourseVo> voList = Lists.newArrayList();
-		for (EduCourse eduCourse : courseList) {
+	public static List<CourseVo> entityListToVoList(List<EduCourse> eduCourseList){
+		List<CourseVo> courseVoList = Lists.newArrayList();
+		for (EduCourse eduCourse : eduCourseList) {
 			if (eduCourse == null) {
 				return null;
 			}
 			CourseVo courseVo = entityToVo(eduCourse);
-			voList.add(courseVo);
+			courseVoList.add(courseVo);
 		}
-		return voList;
+		return courseVoList;
 	}
 
 	public static CourseVo entityToVo(EduCourse eduCourse){

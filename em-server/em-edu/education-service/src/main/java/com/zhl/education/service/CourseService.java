@@ -19,12 +19,12 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 public class CourseService extends ServiceImpl<CourseMapper, EduCourse> {
 
 	public PageBean<CourseVo> selectVoPage(CourseQo courseQo, PageParam pageParam){
-		LambdaQueryWrapper<EduCourse> queryWrapper = baseMapper.getQueryWrapper(courseQo);
-		Page<EduCourse> coursePage = new Page<EduCourse>(pageParam.getCurrent(), pageParam.getSize());
-		baseMapper.selectPage(coursePage, queryWrapper);
-		List<CourseVo> voList = CourseConverter.entityListToVoList(coursePage.getRecords());
-		PageBean<CourseVo> pageBean = new PageBean<CourseVo>(pageParam.getCurrent(), pageParam.getSize(), coursePage.getTotal(), voList);
-		return pageBean;
+		LambdaQueryWrapper<EduCourse> lambdaQueryWrapper = baseMapper.getQueryWrapper(courseQo);
+		Page<EduCourse> eduCoursePage = new Page<EduCourse>(pageParam.getCurrent(), pageParam.getSize());
+		baseMapper.selectPage(eduCoursePage, lambdaQueryWrapper);
+		List<CourseVo> courseVoList = CourseConverter.entityListToVoList(eduCoursePage.getRecords());
+		PageBean<CourseVo> voPageBean = new PageBean<CourseVo>(pageParam.getCurrent(), pageParam.getSize(), eduCoursePage.getTotal(), courseVoList);
+		return voPageBean;
 	}
 
 	public CourseVo selectVo(CourseQo courseQo){
@@ -33,8 +33,8 @@ public class CourseService extends ServiceImpl<CourseMapper, EduCourse> {
 	}
 
 	public EduCourse selectEntity(CourseQo courseQo){
-		LambdaQueryWrapper<EduCourse> queryWrapper = baseMapper.getQueryWrapper(courseQo);
-		return this.getOne(queryWrapper, false);
+		LambdaQueryWrapper<EduCourse> lambdaQueryWrapper = baseMapper.getQueryWrapper(courseQo);
+		return this.getOne(lambdaQueryWrapper, false);
 	}
 
 }

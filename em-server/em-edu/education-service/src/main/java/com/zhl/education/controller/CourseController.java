@@ -20,8 +20,8 @@ public class CourseController {
 
 	@GetMapping("/page")
 	public RestResponse<PageBean<CourseVo>> page(CourseQo courseQo, PageParam pageParam){
-		PageBean<CourseVo> pageBean = courseService.selectVoPage(courseQo, pageParam);
-		return RestResponse.ok(pageBean);
+		PageBean<CourseVo> voPageBean = courseService.selectVoPage(courseQo, pageParam);
+		return RestResponse.ok(voPageBean);
 	}
 
 	@GetMapping("/detail")

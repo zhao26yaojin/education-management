@@ -13,11 +13,11 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 @Mapper
 public interface UserMapper extends BaseMapper<SysUser> {
 
-	default LambdaQueryWrapper<SysUser> getQueryWrapper(UserAuthQo authQo){
+	default LambdaQueryWrapper<SysUser> getQueryWrapper(UserAuthQo userAuthQo){
 		LambdaQueryWrapper<SysUser> wrapper = Wrappers.lambdaQuery(SysUser.class);
-		wrapper.eq(authQo.getId() != null, SysUser::getId, authQo.getId());
-		wrapper.eq(StringUtils.isNotEmpty(authQo.getName()), SysUser::getName, authQo.getName());
-		wrapper.eq(StringUtils.isNotEmpty(authQo.getPassword()), SysUser::getPassword, authQo.getPassword());
+		wrapper.eq(userAuthQo.getId() != null, SysUser::getId, userAuthQo.getId());
+		wrapper.eq(StringUtils.isNotEmpty(userAuthQo.getName()), SysUser::getName, userAuthQo.getName());
+		wrapper.eq(StringUtils.isNotEmpty(userAuthQo.getPassword()), SysUser::getPassword, userAuthQo.getPassword());
 		return wrapper;
 	}
 

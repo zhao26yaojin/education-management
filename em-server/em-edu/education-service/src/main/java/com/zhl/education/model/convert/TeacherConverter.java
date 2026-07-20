@@ -8,16 +8,16 @@ import com.zhl.education.model.vo.TeacherVo;
 
 public class TeacherConverter {
 
-	public static List<TeacherVo> entityListToVoList(List<EduTeacher> teacherList){
-		List<TeacherVo> voList = Lists.newArrayList();
-		for (EduTeacher eduTeacher : teacherList) {
+	public static List<TeacherVo> entityListToVoList(List<EduTeacher> eduTeacherList){
+		List<TeacherVo> teacherVoList = Lists.newArrayList();
+		for (EduTeacher eduTeacher : eduTeacherList) {
 			if (eduTeacher == null) {
 				return null;
 			}
 			TeacherVo teacherVo = entityToVo(eduTeacher);
-			voList.add(teacherVo);
+			teacherVoList.add(teacherVo);
 		}
-		return voList;
+		return teacherVoList;
 	}
 
 	public static TeacherVo entityToVo(EduTeacher eduTeacher){

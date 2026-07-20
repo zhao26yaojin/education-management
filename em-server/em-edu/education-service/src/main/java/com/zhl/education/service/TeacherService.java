@@ -15,13 +15,13 @@ import com.zhl.education.model.vo.TeacherVo;
 public class TeacherService extends ServiceImpl<TeacherMapper, EduTeacher> {
 
 	public List<TeacherVo> selectVoList(TeacherQo teacherQo){
-		List<EduTeacher> teacherList = selectList(teacherQo);
-		return TeacherConverter.entityListToVoList(teacherList);
+		List<EduTeacher> eduTeacherList = selectList(teacherQo);
+		return TeacherConverter.entityListToVoList(eduTeacherList);
 	}
 
 	public List<EduTeacher> selectList(TeacherQo teacherQo){
-		LambdaQueryWrapper<EduTeacher> queryWrapper = baseMapper.getQueryWrapper(teacherQo);
-		return this.list(queryWrapper);
+		LambdaQueryWrapper<EduTeacher> lambdaQueryWrapper = baseMapper.getQueryWrapper(teacherQo);
+		return this.list(lambdaQueryWrapper);
 	}
 
 	public boolean saveVo(TeacherVo teacherVo){

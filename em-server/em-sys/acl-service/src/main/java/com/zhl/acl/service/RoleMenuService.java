@@ -10,9 +10,9 @@ import com.zhl.acl.model.entity.SysRoleMenu;
 @Service
 public class RoleMenuService extends ServiceImpl<RoleMenuMapper, SysRoleMenu> {
 
-	public SysRoleMenu selectList(RoleMenuQo menuQo){
-		LambdaQueryWrapper<SysRoleMenu> queryWrapper = baseMapper.getQueryWrapper(menuQo);
-		return this.list(queryWrapper);
+	public SysRoleMenu selectList(RoleMenuQo roleMenuQo){
+		LambdaQueryWrapper<SysRoleMenu> lambdaQueryWrapper = baseMapper.getQueryWrapper(roleMenuQo);
+		return this.list(lambdaQueryWrapper);
 	}
 
 }

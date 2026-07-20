@@ -22,8 +22,8 @@ public class TeacherController {
 
 	@GetMapping("/list")
 	public RestResponse<List<TeacherVo>> List(TeacherQo teacherQo){
-		List<TeacherVo> voList = teacherService.selectVoList(teacherQo);
-		return RestResponse.ok(voList);
+		List<TeacherVo> teacherVoList = teacherService.selectVoList(teacherQo);
+		return RestResponse.ok(teacherVoList);
 	}
 
 	@PostMapping("/save")

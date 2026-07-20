@@ -17,20 +17,20 @@ public class UserService extends ServiceImpl<UserMapper, SysUser> {
 	@Autowired
 	private TokenService tokenService;
 
-	public UserAuthVo login(UserAuthQo authQo){
-		SysUser entity = selectEntity(authQo);
-		UserAuthVo authVo = UserConverter.entityToVo(entity);
-		tokenService.createToken(authVo);
-		return authVo;
+	public UserAuthVo login(UserAuthQo userAuthQo){
+		SysUser entity = selectEntity(userAuthQo);
+		UserAuthVo userAuthVo = UserConverter.entityToVo(entity);
+		tokenService.createToken(userAuthVo);
+		return userAuthVo;
 	}
 
-	public SysUser selectEntity(UserAuthQo authQo){
-		LambdaQueryWrapper<SysUser> queryWrapper = baseMapper.getQueryWrapper(authQo);
-		return this.getOne(queryWrapper, false);
+	public SysUser selectEntity(UserAuthQo userAuthQo){
+		LambdaQueryWrapper<SysUser> lambdaQueryWrapper = baseMapper.getQueryWrapper(userAuthQo);
+		return this.getOne(lambdaQueryWrapper, false);
 	}
 
-	public UserAuthVo selectAuthVo(UserAuthQo authQo){
-		SysUser entity = selectEntity(authQo);
+	public UserAuthVo selectAuthVo(UserAuthQo userAuthQo){
+		SysUser entity = selectEntity(userAuthQo);
 		return UserConverter.entityToVo(entity);
 	}
 

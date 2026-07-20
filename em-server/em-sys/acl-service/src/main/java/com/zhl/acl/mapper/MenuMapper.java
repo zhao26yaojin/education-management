@@ -13,11 +13,11 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 @Mapper
 public interface MenuMapper extends BaseMapper<SysMenu> {
 
-	default LambdaQueryWrapper<SysMenu> getQueryWrapper(MenuRoleQo roleQo){
+	default LambdaQueryWrapper<SysMenu> getQueryWrapper(MenuRoleQo menuRoleQo){
 		LambdaQueryWrapper<SysMenu> wrapper = Wrappers.lambdaQuery(SysMenu.class);
-		wrapper.eq(roleQo.getId() != null, SysMenu::getId, roleQo.getId());
-		wrapper.eq(StringUtils.isNotEmpty(roleQo.getName()), SysMenu::getName, roleQo.getName());
-		wrapper.eq(roleQo.getRoleId() != null, SysMenu::getRoleId, roleQo.getRoleId());
+		wrapper.eq(menuRoleQo.getId() != null, SysMenu::getId, menuRoleQo.getId());
+		wrapper.eq(StringUtils.isNotEmpty(menuRoleQo.getName()), SysMenu::getName, menuRoleQo.getName());
+		wrapper.eq(menuRoleQo.getRoleId() != null, SysMenu::getRoleId, menuRoleQo.getRoleId());
 		return wrapper;
 	}
 

@@ -9,26 +9,26 @@ import com.zhl.utils.tree.TreeUtil;
 
 public class MenuConverter {
 
-	public static List<MenuRoleNode> entityListToTree(List<SysMenu> menuList){
-		List<MenuRoleNode> nodeList = Lists.newArrayList();
-		for (SysMenu sysMenu : menuList) {
+	public static List<MenuRoleNode> entityListToTree(List<SysMenu> sysMenuList){
+		List<MenuRoleNode> roleNodeList = Lists.newArrayList();
+		for (SysMenu sysMenu : sysMenuList) {
 			if (sysMenu == null) {
 				return null;
 			}
-			MenuRoleNode roleNode = entityToVo(sysMenu);
-			nodeList.add(roleNode);
+			MenuRoleNode menuRoleNode = entityToVo(sysMenu);
+			roleNodeList.add(menuRoleNode);
 		}
-		nodeList = TreeUtil.buildTree(nodeList);
-		return nodeList;
+		roleNodeList = TreeUtil.buildTree(roleNodeList);
+		return roleNodeList;
 	}
 
 	public static MenuRoleNode entityToVo(SysMenu sysMenu){
-		MenuRoleNode roleNode = new MenuRoleNode();
+		MenuRoleNode menuRoleNode = new MenuRoleNode();
 		if (sysMenu == null) {
 			return null;
 		}
-		BeanUtils.copyProperties(sysMenu, roleNode);
-		return roleNode;
+		BeanUtils.copyProperties(sysMenu, menuRoleNode);
+		return menuRoleNode;
 	}
 
 }

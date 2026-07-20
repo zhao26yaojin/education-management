@@ -23,10 +23,10 @@ public class UserController {
 	private UserService userService;
 
 	@PostMapping("/auth/login")
-	public RestResponse<UserAuthVo> login(@RequestBody UserAuthQo authQo){
-		UserAuthVo authVo = userService.login(authQo);
-		if (authVo != null) {
-			return RestResponse.ok(authVo);
+	public RestResponse<UserAuthVo> login(@RequestBody UserAuthQo userAuthQo){
+		UserAuthVo userAuthVo = userService.login(userAuthQo);
+		if (userAuthVo != null) {
+			return RestResponse.ok(userAuthVo);
 		}
 		else {
 			return RestResponse.error(ExceptionConstants.NAME_PASSWORD_FAIL);
@@ -35,10 +35,10 @@ public class UserController {
 
 	@GetMapping("/auth/loginInfo")
 	public RestResponse<UserAuthVo> loginInfo(){
-		UserAuthQo authQo = new UserAuthQo();
-		authQo.setId(SecurityUtil.getUserId());
-		UserAuthVo authVo = userService.selectAuthVo(authQo);
-		return RestResponse.ok(authVo);
+		UserAuthQo userAuthQo = new UserAuthQo();
+		userAuthQo.setId(SecurityUtil.getUserId());
+		UserAuthVo userAuthVo = userService.selectAuthVo(userAuthQo);
+		return RestResponse.ok(userAuthVo);
 	}
 
 }
