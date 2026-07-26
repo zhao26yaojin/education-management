@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS `sys_menu`;
 
 CREATE TABLE `sys_menu`  (
   `id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT "id",
-  `name` varchar(100) NOT NULL  COMMENT "菜单名",
+  `name` varchar(50) NOT NULL  COMMENT "菜单名",
   `parent_id` bigint(0) NULL DEFAULT NULL  COMMENT "父级id",
   `pid_path` varchar(500) NOT NULL  COMMENT "路径编码",
   `url` varchar(200) NOT NULL  COMMENT "路由",

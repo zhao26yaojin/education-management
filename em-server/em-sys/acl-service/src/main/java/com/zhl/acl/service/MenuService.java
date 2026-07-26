@@ -3,6 +3,7 @@ package com.zhl.acl.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import java.util.List;
+import java.lang.Long;
 import com.zhl.acl.model.convert.MenuConverter;
 import com.zhl.acl.mapper.MenuMapper;
 import com.zhl.acl.model.vo.MenuRoleNode;
@@ -21,7 +22,10 @@ public class MenuService extends ServiceImpl<MenuMapper, SysMenu> {
 
 	public List<MenuRoleNode> selectVoTree(MenuRoleQo menuRoleQo){
 		RoleMenuQo roleMenuQo = new RoleMenuQo();
-		SysRoleMenu sysRoleMenu = roleMenuService.selectList(roleMenuQo);
+		roleMenuQo.setRoleId(menuRoleQo.getRoleId());
+		List<SysRoleMenu> roleMenuList = roleMenuService.selectList(roleMenuQo);
+		List<Long> roleIdList = roleMenuList.stream().map(SysRoleMenu::getRoleId).toList();
+		menuRoleQo.setIdList(roleIdList);
 		List<SysMenu> sysMenuList = selectList(menuRoleQo);
 		return MenuConverter.entityListToTree(sysMenuList);
 	}
