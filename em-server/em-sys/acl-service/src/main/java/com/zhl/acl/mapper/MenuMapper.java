@@ -17,7 +17,6 @@ public interface MenuMapper extends BaseMapper<SysMenu> {
 		LambdaQueryWrapper<SysMenu> wrapper = Wrappers.lambdaQuery(SysMenu.class);
 		wrapper.eq(menuRoleQo.getId() != null, SysMenu::getId, menuRoleQo.getId());
 		wrapper.eq(StringUtils.isNotEmpty(menuRoleQo.getName()), SysMenu::getName, menuRoleQo.getName());
-		wrapper.eq(menuRoleQo.getRoleId() != null, SysMenu::getRoleId, menuRoleQo.getRoleId());
 		return wrapper;
 	}
 

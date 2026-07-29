@@ -1,5 +1,6 @@
 import { defineStore } from "pinia"
 import "@/store/modules/user"
+import { getLoginInfo } from "@/api/sys/user"
 import { ref } from "vue"
 
 const useUserStore = defineStore("user", () => {
@@ -10,24 +11,26 @@ const useUserStore = defineStore("user", () => {
 		token.value = localToken
 	}
 
-	const getUserInfo = () => {
-		if (null == userInfo) {
-			initUserInfo(userInfo)
+	const getUserInfo = async () => {
+		if (null == userInfo.value) {
+			await initUserInfo(userInfo)
 		}
 
+		return userInfo.value
 	}
-	const initUserInfo = userInfo => {
+	const initUserInfo = async userInfo => {
 		if (null == token.value) {
 			return null
 		}
 
+		const loginInfo = await getLoginInfo()
 		userInfo.value = loginInfo
 	}
 	const setUserInfo = result => {
 		token.value = result.token
 		userInfo.value = result
 		userInfo.value.token = ""
-		localStorage.setItem(token, token.value)
+		localStorage.setItem("token", token.value)
 	}
 	return { token, getUserInfo, setUserInfo }
 })

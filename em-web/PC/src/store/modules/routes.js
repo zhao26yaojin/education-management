@@ -6,19 +6,19 @@ import useUserStore from "@/store/modules/user"
 import { traverseTree } from "@/utils/treeUtil"
 import { ref } from "vue"
 
-const modules = import.meta.glob("'./../../views/**/*.vue'")
+const modules = import.meta.glob("./../../views/**/*.vue")
 const useRoutesStore = defineStore("routes", () => {
 	let aclRoutes = ref(null)
-	const getAclRoutes = () => {
+	const getAclRoutes = async () => {
 		if (null == aclRoutes.value) {
-			initRoutes()
+			await initRoutes()
 		}
 
 		return aclRoutes
 	}
 	const initRoutes = async () => {
 		const userStore = useUserStore()
-		const userInfo = userStore.getUserInfo()
+		const userInfo = await userStore.getUserInfo()
 		if (null == userInfo) {
 			return 
 		}
