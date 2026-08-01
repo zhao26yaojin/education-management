@@ -2,6 +2,7 @@ package com.zhl.acl.model.vo;
 
 import lombok.Data;
 import java.lang.Integer;
+import java.util.List;
 import java.lang.Long;
 import java.lang.String;
 
@@ -23,6 +24,8 @@ public class UserAuthVo {
 	private Integer status;
 
 	private Long deleted;
+
+	private List<Long> roleIdList;
 
 	private String userKey;
 

@@ -10,10 +10,10 @@ public class MenuRoleQo {
 
 	private Long id;
 
-	private List<Long> idList;
-
 	private String name;
 
 	private Long roleId;
+
+	private List<Long> idList;
 
 }
