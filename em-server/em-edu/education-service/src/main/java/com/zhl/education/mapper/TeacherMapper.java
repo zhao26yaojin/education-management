@@ -19,6 +19,7 @@ public interface TeacherMapper extends BaseMapper<EduTeacher> {
 		wrapper.eq(teacherQo.getId() != null, EduTeacher::getId, teacherQo.getId());
 		wrapper.eq(StringUtils.isNotEmpty(teacherQo.getName()), EduTeacher::getName, teacherQo.getName());
 		wrapper.eq(teacherQo.getLevel() != null, EduTeacher::getLevel, teacherQo.getLevel());
+
 		return wrapper;
 	}
 

@@ -20,6 +20,7 @@ public class CourseService extends ServiceImpl<CourseMapper, EduCourse> {
 
 	public PageBean<CourseVo> selectVoPage(CourseQo courseQo, PageParam pageParam){
 		LambdaQueryWrapper<EduCourse> lambdaQueryWrapper = baseMapper.getQueryWrapper(courseQo);
+
 		Page<EduCourse> eduCoursePage = new Page<EduCourse>(pageParam.getCurrent(), pageParam.getSize());
 		baseMapper.selectPage(eduCoursePage, lambdaQueryWrapper);
 		List<CourseVo> courseVoList = CourseConverter.entityListToVoList(eduCoursePage.getRecords());

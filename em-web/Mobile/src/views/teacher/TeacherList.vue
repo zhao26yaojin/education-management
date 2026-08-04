@@ -32,7 +32,9 @@ const teacherQuery = reactive({})
 const teacherList = reactive([])
 const onGetTeacherList = () => {
 	const { result } = getTeacherList(teacherQuery)
+
 	teacherList.splice(0, teacherList.length)
+
 	if (result && result.length > 0) {
 		teacherList.push({spread: result})
 	}

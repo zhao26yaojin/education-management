@@ -25,9 +25,11 @@ public class UserController {
 	@PostMapping("/auth/login")
 	public RestResponse<UserAuthVo> login(@RequestBody UserAuthQo userAuthQo){
 		UserAuthVo userAuthVo = userService.login(userAuthQo);
+
 		if (userAuthVo != null) {
 			return RestResponse.ok(userAuthVo);
 		}
+
 		else {
 			return RestResponse.error(ExceptionConstants.NAME_PASSWORD_FAIL);
 		}

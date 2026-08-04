@@ -27,12 +27,15 @@ public class UserService extends ServiceImpl<UserMapper, SysUser> {
 	public UserAuthVo login(UserAuthQo userAuthQo){
 		SysUser entity = selectEntity(userAuthQo);
 		UserAuthVo userAuthVo = UserConverter.entityToVo(entity);
+
 		UserRoleQo userRoleQo = new UserRoleQo();
 		userRoleQo.setUserId(userAuthQo.getId());
 		List<SysUserRole> userRoleList = userRoleService.selectList(userRoleQo);
 		List<Long> roleIdList = userRoleList.stream().map(SysUserRole::getRoleId).toList();
 		userAuthVo.setRoleIdList(roleIdList);
+
 		tokenService.createToken(userAuthVo);
+
 		return userAuthVo;
 	}
 
@@ -44,11 +47,13 @@ public class UserService extends ServiceImpl<UserMapper, SysUser> {
 	public UserAuthVo selectAuthVo(UserAuthQo userAuthQo){
 		SysUser entity = selectEntity(userAuthQo);
 		UserAuthVo userAuthVo = UserConverter.entityToVo(entity);
+
 		UserRoleQo userRoleQo = new UserRoleQo();
 		userRoleQo.setUserId(userAuthQo.getId());
 		List<SysUserRole> userRoleList = userRoleService.selectList(userRoleQo);
 		List<Long> roleIdList = userRoleList.stream().map(SysUserRole::getRoleId).toList();
 		userAuthVo.setRoleIdList(roleIdList);
+
 		return userAuthVo;
 	}
 

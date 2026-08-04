@@ -8,6 +8,7 @@ import Components from "unplugin-vue-components/vite"
 const config = defineConfig(({ mode, command }) => {
 	const env = loadEnv(mode, process.cwd())
 	const { VITE_APP_ENV, VITE_APP_BASE_URL, VITE_BASE_API } = env
+
 	return {
 		base: VITE_APP_ENV == "test" ? "./": "/",
 		plugins: [

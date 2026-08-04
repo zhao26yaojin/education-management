@@ -30,6 +30,7 @@ public class TeacherService extends ServiceImpl<TeacherMapper, EduTeacher> {
 		}
 		EduTeacher entity = TeacherConverter.voToEntity(teacherVo);
 		boolean result = this.saveOrUpdate(entity);
+
 		if (result) {
 			teacherVo.setId(entity.getId());
 		}

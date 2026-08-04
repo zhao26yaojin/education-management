@@ -26,6 +26,7 @@ public class MenuService extends ServiceImpl<MenuMapper, SysMenu> {
 		List<SysRoleMenu> roleMenuList = roleMenuService.selectList(roleMenuQo);
 		List<Long> roleIdList = roleMenuList.stream().map(SysRoleMenu::getRoleId).toList();
 		menuRoleQo.setIdList(roleIdList);
+
 		List<SysMenu> sysMenuList = selectList(menuRoleQo);
 		return MenuConverter.entityListToTree(sysMenuList);
 	}

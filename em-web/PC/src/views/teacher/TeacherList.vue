@@ -41,7 +41,9 @@ const teacherQuery = reactive({
 const teacherList = reactive([])
 const onGetTeacherList = async () => {
 	const { result } = await getTeacherList(teacherQuery)
+
 	teacherList.splice(0, teacherList.length)
+
 	if (result && result.length > 0) {
 		teacherList.push(...result)
 	}

@@ -30,10 +30,13 @@ const userStore = useUserStore()
 const onLogin = async () => {
 	const { result } = await login(userAuth)
 	const success = result != null
+
 	if (success) {
 		userStore.setUserInfo(result)
+
 		router.push("/")
 	}
+
 
 	ElMessage({
 		message: success ? "登录成功": result,

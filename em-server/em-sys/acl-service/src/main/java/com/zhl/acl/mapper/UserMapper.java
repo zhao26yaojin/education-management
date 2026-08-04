@@ -18,6 +18,7 @@ public interface UserMapper extends BaseMapper<SysUser> {
 		wrapper.eq(userAuthQo.getId() != null, SysUser::getId, userAuthQo.getId());
 		wrapper.eq(StringUtils.isNotEmpty(userAuthQo.getName()), SysUser::getName, userAuthQo.getName());
 		wrapper.eq(StringUtils.isNotEmpty(userAuthQo.getPassword()), SysUser::getPassword, userAuthQo.getPassword());
+
 		return wrapper;
 	}
 

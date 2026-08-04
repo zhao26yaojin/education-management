@@ -32,9 +32,11 @@ public class TeacherController {
 			return null;
 		}
 		boolean result = teacherService.saveVo(teacherVo);
+
 		if (result) {
 			return RestResponse.ok();
 		}
+
 		else {
 			return RestResponse.error(String.valueOf(result));
 		}

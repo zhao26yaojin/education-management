@@ -14,6 +14,7 @@ public interface UserRoleMapper extends BaseMapper<SysUserRole> {
 	default LambdaQueryWrapper<SysUserRole> getQueryWrapper(UserRoleQo userRoleQo){
 		LambdaQueryWrapper<SysUserRole> wrapper = Wrappers.lambdaQuery(SysUserRole.class);
 		wrapper.eq(userRoleQo.getUserId() != null, SysUserRole::getUserId, userRoleQo.getUserId());
+
 		return wrapper;
 	}
 

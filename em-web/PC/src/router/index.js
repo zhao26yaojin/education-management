@@ -42,6 +42,7 @@ const constRoutes = [
 		children: []
 	}
 ]
+
 const router = createRouter({
 	history: createWebHashHistory(),
 	routes: constRoutes

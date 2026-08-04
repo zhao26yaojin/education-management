@@ -39,7 +39,9 @@ const coursePage = reactive([])
 const onGetCoursePage = async () => {
 	const { result } = await getCoursePage(courseQuery)
 	courseQuery.total = result.total
+
 	coursePage.splice(0, coursePage.length)
+
 	if (result.records && result.records.length > 0) {
 		coursePage.push(...result)
 	}

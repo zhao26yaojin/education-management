@@ -11,6 +11,7 @@ public class MenuConverter {
 
 	public static List<MenuRoleNode> entityListToTree(List<SysMenu> sysMenuList){
 		List<MenuRoleNode> roleNodeList = Lists.newArrayList();
+
 		for (SysMenu sysMenu : sysMenuList) {
 			if (sysMenu == null) {
 				return null;
@@ -18,16 +19,19 @@ public class MenuConverter {
 			MenuRoleNode menuRoleNode = entityToVo(sysMenu);
 			roleNodeList.add(menuRoleNode);
 		}
+
 		roleNodeList = TreeUtil.buildTree(roleNodeList);
 		return roleNodeList;
 	}
 
 	public static MenuRoleNode entityToVo(SysMenu sysMenu){
 		MenuRoleNode menuRoleNode = new MenuRoleNode();
+
 		if (sysMenu == null) {
 			return null;
 		}
 		BeanUtils.copyProperties(sysMenu, menuRoleNode);
+
 		return menuRoleNode;
 	}
 

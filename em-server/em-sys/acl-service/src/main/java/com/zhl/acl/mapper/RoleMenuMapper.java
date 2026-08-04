@@ -14,6 +14,7 @@ public interface RoleMenuMapper extends BaseMapper<SysRoleMenu> {
 	default LambdaQueryWrapper<SysRoleMenu> getQueryWrapper(RoleMenuQo roleMenuQo){
 		LambdaQueryWrapper<SysRoleMenu> wrapper = Wrappers.lambdaQuery(SysRoleMenu.class);
 		wrapper.eq(roleMenuQo.getRoleId() != null, SysRoleMenu::getRoleId, roleMenuQo.getRoleId());
+
 		return wrapper;
 	}
 

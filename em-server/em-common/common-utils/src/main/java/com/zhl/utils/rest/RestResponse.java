@@ -21,9 +21,11 @@ public class RestResponse<T> implements Serializable {
 	}
 
 	RestResponse(ResultCode resultCode, T result){
-		this.code = resultCode.getCode();
-		this.message = resultCode.getMessage();
 		this.result = result;
+
+		this.code = resultCode.getCode();
+
+		this.message = resultCode.getMessage();
 	}
 
 	public static <T> RestResponse<T> ok(){
@@ -32,6 +34,7 @@ public class RestResponse<T> implements Serializable {
 
 	RestResponse(ResultCode resultCode){
 		this.code = resultCode.getCode();
+
 		this.message = resultCode.getMessage();
 	}
 
@@ -44,9 +47,9 @@ public class RestResponse<T> implements Serializable {
 	}
 
 	RestResponse(ResultCode resultCode, String message){
-		this.code = resultCode.getCode();
-		this.message = resultCode.getMessage();
 		this.message = message;
+
+		this.code = resultCode.getCode();
 	}
 
 }

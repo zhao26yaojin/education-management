@@ -36,6 +36,7 @@ const teacher = reactive({
 const onSaveTeacherForm = async () => {
 	const { result } = await saveTeacherForm(teacher)
 	const success = result == null
+
 	ElMessage({
 		message: success ? "保存成功": result,
 		type: success ? "success": "error"

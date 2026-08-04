@@ -9,6 +9,7 @@ import { ref } from "vue"
 const modules = import.meta.glob("./../../views/**/*.vue")
 const useRoutesStore = defineStore("routes", () => {
 	let aclRoutes = ref(null)
+
 	const getAclRoutes = async () => {
 		if (null == aclRoutes.value) {
 			await initRoutes()
@@ -16,9 +17,11 @@ const useRoutesStore = defineStore("routes", () => {
 
 		return aclRoutes
 	}
+
 	const initRoutes = async () => {
 		const userStore = useUserStore()
 		const userInfo = await userStore.getUserInfo()
+
 		if (null == userInfo) {
 			return 
 		}
@@ -30,9 +33,12 @@ const useRoutesStore = defineStore("routes", () => {
 			}
 
 		})
+
 		aclMenuList.forEach(item => router.addRoute("layout", item))
+
 		aclRoutes.value = constRoutes
 	}
+
 	const loadView = view => {
         let res
 		for (const path in modules) {
@@ -43,6 +49,7 @@ const useRoutesStore = defineStore("routes", () => {
 		}
         return res
 	}
+
 	return { getAclRoutes, aclRoutes }
 })
 export default useRoutesStore

@@ -5,7 +5,9 @@ import { createSSRApp } from "vue"
 
 const createApp = () => {
 	const app = createSSRApp(App)
+
 	app.use(uviewPlus)
+
 	return {app: app }
 }
 export {createApp}

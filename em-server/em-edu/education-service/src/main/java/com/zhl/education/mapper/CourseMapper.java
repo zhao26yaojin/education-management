@@ -17,6 +17,7 @@ public interface CourseMapper extends BaseMapper<EduCourse> {
 		LambdaQueryWrapper<EduCourse> wrapper = Wrappers.lambdaQuery(EduCourse.class);
 		wrapper.eq(courseQo.getId() != null, EduCourse::getId, courseQo.getId());
 		wrapper.eq(StringUtils.isNotEmpty(courseQo.getName()), EduCourse::getName, courseQo.getName());
+
 		return wrapper;
 	}
 
