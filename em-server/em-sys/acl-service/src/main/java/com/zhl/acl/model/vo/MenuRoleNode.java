@@ -17,7 +17,7 @@ public class MenuRoleNode implements TreeNode<MenuRoleNode> {
 
 	private String pidPath;
 
-	private String url;
+	private String path;
 
 	private String component;
 

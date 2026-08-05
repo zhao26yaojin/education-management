@@ -7,6 +7,7 @@ const constRoutes = [
 	{
 		path: "/",
 		component: Home,
+		name: "home",
 		children: [
 			{
 				path: "teacher/list",
@@ -34,17 +35,18 @@ const constRoutes = [
 	{
 		path: "/login",
 		component: Login,
+		name: "login",
 		children: []
 	},
 	{
 		path: "/register",
 		component: Register,
+		name: "register",
 		children: []
 	}
 ]
-
 const router = createRouter({
 	history: createWebHashHistory(),
 	routes: constRoutes
 })
-export default router
+export {constRoutes, router as default}
