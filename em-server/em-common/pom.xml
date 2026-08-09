@@ -12,6 +12,7 @@
 	<description>em-common</description>
 	<packaging>pom</packaging>
 	<modules>
+		<module>common-redis</module>
 		<module>common-services</module>
 		<module>common-utils</module>
 	</modules>

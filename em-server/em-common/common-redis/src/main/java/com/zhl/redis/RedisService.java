@@ -1,4 +1,4 @@
-package com.zhl.services.redis;
+package com.zhl.redis;
 
 import java.util.concurrent.TimeUnit;
 import org.springframework.beans.factory.annotation.Autowired;

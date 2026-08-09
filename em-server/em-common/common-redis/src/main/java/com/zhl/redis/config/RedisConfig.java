@@ -1,4 +1,4 @@
-package com.zhl.services.config;
+package com.zhl.redis.config;
 
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;

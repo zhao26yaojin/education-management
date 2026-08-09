@@ -3,7 +3,7 @@ package com.zhl.services.security;
 import jakarta.servlet.http.HttpServletRequest;
 import org.apache.commons.lang3.StringUtils;
 import com.zhl.services.context.SecurityContextHolder;
-import com.zhl.services.servlet.ServletUtil;
+import com.zhl.utils.servlet.ServletUtil;
 import com.zhl.utils.constant.TokenConstants;
 
 

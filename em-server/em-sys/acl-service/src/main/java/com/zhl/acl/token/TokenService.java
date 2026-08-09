@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit;
 import org.apache.commons.lang3.StringUtils;
 import com.zhl.utils.uuid.UUID;
 import com.zhl.utils.acl.JwtUtil;
-import com.zhl.services.redis.RedisService;
+import com.zhl.redis.RedisService;
 import com.zhl.utils.constant.CacheConstants;
 import com.zhl.utils.constant.SecurityConstants;
 import com.zhl.acl.model.vo.UserAuthVo;
