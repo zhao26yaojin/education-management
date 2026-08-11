@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.zhl.utils.rest.RestResponse;
-import com.zhl.services.security.SecurityUtil;
+import com.zhl.services.security.util.SecurityUtil;
 import java.lang.String;
 import com.zhl.acl.model.qo.UserAuthQo;
 import com.zhl.acl.model.vo.UserAuthVo;

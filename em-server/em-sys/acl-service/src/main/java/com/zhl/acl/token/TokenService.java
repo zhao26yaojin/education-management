@@ -12,7 +12,7 @@ import com.zhl.utils.acl.JwtUtil;
 import com.zhl.redis.RedisService;
 import com.zhl.utils.constant.CacheConstants;
 import com.zhl.utils.constant.SecurityConstants;
-import com.zhl.acl.model.vo.UserAuthVo;
+import com.zhl.services.model.LoginUser;
 
 /**
  * token验证处理
@@ -35,15 +35,17 @@ public class TokenService
     /**
      * 创建令牌
      */
-    public void createToken(UserAuthVo loginUser)
+    public String createToken(Long userId, String userName)
     {
-        if (loginUser == null) {
-            return;
+        if (userId == null || StringUtils.isEmpty(userName)) {
+            return null;
         }
 
+        LoginUser loginUser = new LoginUser();
+
         String userKey = UUID.fastUUID().toString();
-        Long userId = loginUser.getId();
-        String userName = loginUser.getName();
+        loginUser.setId(userId);
+        loginUser.setName(userName);
         loginUser.setUserKey(userKey);
         // loginUser.setIpaddr(IpUtils.getIpAddr());
         
@@ -55,7 +57,7 @@ public class TokenService
         claimsMap.put(SecurityConstants.USER_ID, userId);
         claimsMap.put(SecurityConstants.USER_NAME, userName);
 
-        loginUser.setToken(JwtUtil.createToken(claimsMap));
+        return JwtUtil.createToken(claimsMap);
     }
 	
 	/**
@@ -63,9 +65,9 @@ public class TokenService
      *
      * @return 用户信息
      */
-    public UserAuthVo getLoginUser(String token)
+    public LoginUser getLoginUser(String token)
     {
-        UserAuthVo loginUser = null;
+        LoginUser loginUser = null;
         try
         {
             if (StringUtils.isNotEmpty(token))
@@ -87,7 +89,7 @@ public class TokenService
      *
      * @param loginUser
      */
-    public void verifyToken(UserAuthVo loginUser)
+    public void verifyToken(LoginUser loginUser)
     {
         long loginTime = loginUser.getLoginTime();
         long currentTime = System.currentTimeMillis();
@@ -102,7 +104,7 @@ public class TokenService
      *
      * @param loginUser 登录信息
      */
-    public void refreshToken(UserAuthVo loginUser)
+    public void refreshToken(LoginUser loginUser)
     {
         loginUser.setLoginTime(System.currentTimeMillis());
         // loginUser.setExpireTime(loginUser.getLoginTime() + expireTime * MILLIS_MINUTE);

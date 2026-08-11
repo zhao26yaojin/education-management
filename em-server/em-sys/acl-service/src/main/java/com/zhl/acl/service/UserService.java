@@ -6,6 +6,7 @@ import java.util.List;
 import java.lang.Long;
 import org.springframework.stereotype.Service;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import java.lang.String;
 import com.zhl.acl.model.entity.SysUser;
 import com.zhl.acl.model.entity.SysUserRole;
 import com.zhl.acl.token.TokenService;
@@ -34,7 +35,7 @@ public class UserService extends ServiceImpl<UserMapper, SysUser> {
 		List<Long> roleIdList = userRoleList.stream().map(SysUserRole::getRoleId).toList();
 		userAuthVo.setRoleIdList(roleIdList);
 
-		tokenService.createToken(userAuthVo);
+		userAuthVo.setToken(tokenService.createToken(userAuthVo.getId(), userAuthVo.getUsername()));
 
 		return userAuthVo;
 	}

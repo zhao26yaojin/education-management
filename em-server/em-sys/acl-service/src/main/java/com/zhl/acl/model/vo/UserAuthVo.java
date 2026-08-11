@@ -33,4 +33,6 @@ public class UserAuthVo {
 
 	private Long loginTime;
 
+	private String username;
+
 }
