@@ -2,6 +2,7 @@ package com.zhl.utils.acl;
 
 import java.util.Map;
 import java.nio.charset.StandardCharsets;
+
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
@@ -70,5 +71,38 @@ public class JwtUtil
     public static String getValue(Claims claims, String key)
     {
         return Convert.toStr(claims.get(key), "");
+    }
+
+    /**
+     * 根据令牌获取用户标识
+     *
+     * @param claims 身份信息
+     * @return 用户ID
+     */
+    public static String getUserKey(Claims claims)
+    {
+        return getValue(claims, SecurityConstants.USER_KEY);
+    }
+
+    /**
+     * 根据身份信息获取用户ID
+     *
+     * @param claims 身份信息
+     * @return 用户ID
+     */
+    public static String getUserId(Claims claims)
+    {
+        return getValue(claims, SecurityConstants.DETAILS_USER_ID);
+    }
+
+    /**
+     * 根据身份信息获取用户名
+     *
+     * @param claims 身份信息
+     * @return 用户名
+     */
+    public static String getUserName(Claims claims)
+    {
+        return getValue(claims, SecurityConstants.DETAILS_USERNAME);
     }
 }

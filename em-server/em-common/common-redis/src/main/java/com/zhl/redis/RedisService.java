@@ -41,4 +41,15 @@ public class RedisService
         ValueOperations<String, T> operation = redisTemplate.opsForValue();
         return operation.get(key);
     }
+
+    /**
+     * 判断 key是否存在
+     *
+     * @param key 键
+     * @return true 存在 false不存在
+     */
+    public Boolean hasKey(String key)
+    {
+        return redisTemplate.hasKey(key);
+    }
 }

@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.lang.String;
 
-@SpringBootApplication(scanBasePackages = {"com.zhl.gateway", "com.zhl.redis"})
+@SpringBootApplication
 public class GatewayApplication {
 
 	public static void main(String[] args){

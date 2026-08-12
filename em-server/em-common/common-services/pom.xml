@@ -13,7 +13,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.zhl.em</groupId>
-			<artifactId>acl-service</artifactId>
+			<artifactId>common-redis</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.zhl.em</groupId>

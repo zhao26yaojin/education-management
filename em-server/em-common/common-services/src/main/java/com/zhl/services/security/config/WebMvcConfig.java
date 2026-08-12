@@ -1,5 +1,6 @@
 package com.zhl.services.security.config;
 
+import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import com.zhl.services.security.interceptor.HeaderInterceptor;
@@ -9,6 +10,7 @@ import com.zhl.services.security.interceptor.HeaderInterceptor;
  *
  * @author ruoyi
  */
+@Component
 public class WebMvcConfig implements WebMvcConfigurer
 {
     /** 不需要拦截地址 */

@@ -16,6 +16,7 @@ import com.zhl.utils.constant.TokenConstants;
 import com.zhl.utils.acl.JwtUtil;
 import com.zhl.utils.servlet.ServletUtil;
 import org.apache.commons.lang3.StringUtils;
+import com.zhl.utils.text.StringUtil;
 import com.zhl.redis.RedisService;
 import com.zhl.gateway.properties.IgnoreWhiteProperties;
 import io.jsonwebtoken.Claims;
@@ -47,7 +48,7 @@ public class AuthFilter implements GlobalFilter, Ordered
 
         String url = request.getURI().getPath();
         // 跳过不需要验证的路径
-        if (StringUtils.matches(url, ignoreWhite.getWhites()))
+        if (StringUtil.matches(url, ignoreWhite.getWhites()))
         {
             return chain.filter(exchange);
         }
@@ -90,7 +91,7 @@ public class AuthFilter implements GlobalFilter, Ordered
             return;
         }
         String valueStr = value.toString();
-        String valueEncode = ServletUtils.urlEncode(valueStr);
+        String valueEncode = ServletUtil.urlEncode(valueStr);
         mutate.header(name, valueEncode);
     }
 
@@ -102,7 +103,7 @@ public class AuthFilter implements GlobalFilter, Ordered
     private Mono<Void> unauthorizedResponse(ServerWebExchange exchange, String msg)
     {
         log.error("[鉴权异常处理]请求路径:{}", exchange.getRequest().getPath());
-        return ServletUtils.webFluxResponseWriter(exchange.getResponse(), msg, HttpStatus.UNAUTHORIZED);
+        return ServletUtil.webFluxResponseWriter(exchange.getResponse(), msg, HttpStatus.UNAUTHORIZED);
     }
 
     /**
@@ -110,7 +111,7 @@ public class AuthFilter implements GlobalFilter, Ordered
      */
     private String getTokenKey(String token)
     {
-        return CacheConstants.LOGIN_TOKEN_KEY + token;
+        return CacheConstants.TOKEN_KEY + token;
     }
 
     /**

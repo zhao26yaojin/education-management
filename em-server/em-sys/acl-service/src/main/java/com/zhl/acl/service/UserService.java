@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import java.lang.String;
 import com.zhl.acl.model.entity.SysUser;
 import com.zhl.acl.model.entity.SysUserRole;
-import com.zhl.acl.token.TokenService;
+import com.zhl.services.security.service.TokenService;
 import com.zhl.acl.model.qo.UserAuthQo;
 import com.zhl.acl.model.vo.UserAuthVo;
 import com.zhl.acl.model.convert.UserConverter;
@@ -35,7 +35,7 @@ public class UserService extends ServiceImpl<UserMapper, SysUser> {
 		List<Long> roleIdList = userRoleList.stream().map(SysUserRole::getRoleId).toList();
 		userAuthVo.setRoleIdList(roleIdList);
 
-		userAuthVo.setToken(tokenService.createToken(userAuthVo.getId(), userAuthVo.getUsername()));
+		userAuthVo.setToken(tokenService.createToken(userAuthVo.getId(), userAuthVo.getName()));
 
 		return userAuthVo;
 	}
