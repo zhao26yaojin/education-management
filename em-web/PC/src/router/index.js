@@ -10,22 +10,6 @@ const constRoutes = [
 		name: "home",
 		children: [
 			{
-				path: "teacher/list",
-				component: () => import("@/views/teacher/TeacherList")
-			},
-			{
-				path: "teacher/edit",
-				component: () => import("@/views/teacher/TeacherEdit")
-			},
-			{
-				path: "course/list",
-				component: () => import("@/views/course/CourseList")
-			},
-			{
-				path: "course/info/detail",
-				component: () => import("@/views/course/info/InfoDetail")
-			},
-			{
 				path: "index",
 				component: () => import("@/views/Index")
 			}

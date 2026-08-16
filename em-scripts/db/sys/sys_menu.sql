@@ -1,4 +1,4 @@
 TRUNCATE TABLE sys_menu;
 
-INSERT INTO sys_menu VALUES (2, 'Home', null, '02,', '', ''), (3, '讲师管理', 2, '02,03,', '', ''), (4, '讲师列表', 3, '02,03,04,', '/teacher/list', 'views/teacher/TeacherList'), (5, '编辑讲师', 3, '02,03,05,', '/teacher/edit', 'views/teacher/TeacherEdit'), (6, '课程管理', 2, '02,06,', '', ''), (7, '课程列表', 6, '02,06,07,', '/course/list', 'views/course/CourseList'), (8, '信息', 6, '02,06,08,', '', ''), (9, '课程详情', 8, '02,06,08,09,', '/course/info/detail', 'views/course/info/InfoDetail'), (10, 'Login模块', null, '010,', '/login', 'views/Login'), (11, 'Register模块', null, '011,', '/register', 'views/Register');
+INSERT INTO sys_menu VALUES (2, '讲师管理', null, '02,', '', ''), (3, '讲师列表', 2, '02,03,', '/teacher/list', 'teacher/TeacherList'), (4, '编辑讲师', 2, '02,04,', '/teacher/edit', 'teacher/TeacherEdit'), (5, '课程管理', null, '05,', '', ''), (6, '课程列表', 5, '05,06,', '/course/list', 'course/CourseList'), (7, '信息', 5, '05,07,', '', ''), (8, '课程详情', 7, '05,07,08,', '/course/info/detail', 'course/info/InfoDetail');
 
