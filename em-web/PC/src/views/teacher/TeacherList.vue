@@ -17,7 +17,7 @@
 				<el-button type="primary" @click="onGetTeacherList">Query</el-button>
 			</el-form-item>
 		</el-form>
-		<el-table :data="teacherList">
+		<el-table :data="teacherList" border>
 			<el-table-column prop="id" label="id">
 			</el-table-column>
 			<el-table-column prop="name" label="名字">

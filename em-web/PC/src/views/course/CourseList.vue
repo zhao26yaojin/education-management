@@ -13,7 +13,7 @@
 				<el-button type="primary" @click="onGetCoursePage">Query</el-button>
 			</el-form-item>
 		</el-form>
-		<el-table :data="coursePage">
+		<el-table :data="coursePage" border>
 			<el-table-column prop="id" label="id">
 			</el-table-column>
 			<el-table-column prop="name" label="名字">
