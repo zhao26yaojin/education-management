@@ -14,7 +14,7 @@
 				</el-input>
 			</el-form-item>
 			<el-form-item label="头像">
-				<el-input v-model="teacher.avatar" placeholder="avatar" clearable>
+				<el-input v-model="teacher.logo" placeholder="logo" clearable>
 				</el-input>
 			</el-form-item>
 			<el-form-item>
@@ -31,7 +31,7 @@ const teacher = reactive({
 	id: '',
 	name: '',
 	level: '',
-	avatar: ''
+	logo: ''
 })
 const onSaveTeacherForm = async () => {
 	const { result } = await saveTeacherForm(teacher)

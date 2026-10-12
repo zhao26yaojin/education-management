@@ -15,8 +15,8 @@
 				<u-input v-model="teacherForm.level">
 				</u-input>
 			</u-form-item>
-			<u-form-item label="头像" prop="teacherForm.avatar">
-				<u-input v-model="teacherForm.avatar">
+			<u-form-item label="头像" prop="teacherForm.logo">
+				<u-input v-model="teacherForm.logo">
 				</u-input>
 			</u-form-item>
 		</u-form>
@@ -32,7 +32,7 @@ const teacherForm = reactive({
 	id: '',
 	name: '',
 	level: '',
-	avatar: ''
+	logo: ''
 })
 const onSaveTeacherForm = () => {
 	const { result } = saveTeacherForm(teacherForm)

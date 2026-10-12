@@ -14,6 +14,6 @@ public class TeacherVo {
 
 	private Integer level;
 
-	private String avatar;
+	private String logo;
 
 }

@@ -16,8 +16,8 @@
 				<u-input v-model="level">
 				</u-input>
 			</u-form-item>
-			<u-form-item label="头像" prop="avatar">
-				<u-input v-model="avatar">
+			<u-form-item label="头像" prop="logo">
+				<u-input v-model="logo">
 				</u-input>
 			</u-form-item>
 		</u-form>

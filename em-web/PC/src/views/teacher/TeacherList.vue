@@ -24,7 +24,7 @@
 			</el-table-column>
 			<el-table-column prop="level" label="级别">
 			</el-table-column>
-			<el-table-column prop="avatar" label="头像">
+			<el-table-column prop="logo" label="头像">
 			</el-table-column>
 		</el-table>
 	</div>

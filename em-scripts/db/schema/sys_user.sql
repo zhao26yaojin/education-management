@@ -1,5 +1,4 @@
 DROP TABLE IF EXISTS `sys_user`;
-
 CREATE TABLE `sys_user`  (
   `id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT "id",
   `name` varchar(50) NOT NULL  COMMENT "用户名",
@@ -12,5 +11,3 @@ CREATE TABLE `sys_user`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `idx_name`(`name`) USING BTREE COMMENT '用户名索引'
 ) ENGINE = InnoDB CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = 'user表' ROW_FORMAT = Dynamic;
-
-

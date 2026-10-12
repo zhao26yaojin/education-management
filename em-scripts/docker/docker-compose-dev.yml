@@ -1,6 +1,3 @@
-# Docker Compose - education management [Dev (middleware only, Nacos embedded)]
-# 使用方法: docker-compose -f docker-compose-dev.yml up -d
-
 services:
   mysql:
     image: mysql:8.0
@@ -27,24 +24,6 @@ services:
       interval: 10s
       timeout: 5s
       retries: 10
-    networks:
-      - em-network
-  redis:
-    image: redis:7-alpine
-    container_name: em-redis
-    restart: always
-    ports:
-      - ${REDIS_PORT}:6379
-    volumes:
-      - em-redis-data:/data
-    command: redis-server --requirepass $REDIS_PASSWORD
-    healthcheck:
-      test:
-        - CMD-SHELL
-        - redis-cli -a $REDIS_PASSWORD ping
-      interval: 10s
-      timeout: 5s
-      retries: 5
     networks:
       - em-network
   nacos:
@@ -77,24 +56,22 @@ services:
       start_period: 30s
     networks:
       - em-network
-  kafka:
-    image: bitnamilegacy/kafka:3.7
-    container_name: em-kafka
+  redis:
+    image: redis:7-alpine
+    container_name: em-redis
     restart: always
-    environment:
-      KAFKA_CFG_NODE_ID: ${KAFKA_BROKER_ID}
-      KAFKA_CFG_PROCESS_ROLES: broker,controller
-      KAFKA_CFG_CONTROLLER_QUORUM_VOTERS: ${KAFKA_BROKER_ID}@kafka:9093
-      KAFKA_CFG_CONTROLLER_LISTENER_NAMES: CONTROLLER
-      KAFKA_CFG_LISTENERS: PLAINTEXT://:9092,CONTROLLER://:9093
-      KAFKA_CFG_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
-      KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT
-      KAFKA_CFG_INTER_BROKER_LISTENER_NAME: PLAINTEXT
-      ALLOW_PLAINTEXT_LISTENER: "yes"
     ports:
-      - 9092:9092
+      - ${REDIS_PORT}:6379
     volumes:
-      - em-kafka-data:/bitnami/kafka
+      - em-redis-data:/data
+    command: redis-server --requirepass $REDIS_PASSWORD
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - redis-cli -a $REDIS_PASSWORD ping
+      interval: 10s
+      timeout: 5s
+      retries: 5
     networks:
       - em-network
 networks:
@@ -103,6 +80,5 @@ networks:
     driver: bridge
 volumes:
   em-mysql-data:
-  em-redis-data:
   em-nacos-data:
-  em-kafka-data:
+  em-redis-data:

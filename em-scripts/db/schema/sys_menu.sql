@@ -1,5 +1,4 @@
 DROP TABLE IF EXISTS `sys_menu`;
-
 CREATE TABLE `sys_menu`  (
   `id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT "id",
   `name` varchar(50) NOT NULL  COMMENT "菜单名",
@@ -10,5 +9,3 @@ CREATE TABLE `sys_menu`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `idx_name`(`name`) USING BTREE COMMENT '菜单名索引'
 ) ENGINE = InnoDB CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = 'menu表' ROW_FORMAT = Dynamic;
-
-
