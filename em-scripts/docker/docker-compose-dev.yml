@@ -1,7 +1,7 @@
 services:
   mysql:
     image: mysql:8.0
-    container_name: em-mysql
+    container_name: dev-mysql
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
@@ -11,7 +11,7 @@ services:
     ports:
       - 3306:3306
     volumes:
-      - em-mysql-data:/var/lib/mysql
+      - dev-mysql-data:/var/lib/mysql
       - ../db:/docker-entrypoint-initdb.d:ro
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     healthcheck:
@@ -25,10 +25,10 @@ services:
       timeout: 5s
       retries: 10
     networks:
-      - em-network
+      - dev-network
   nacos:
     image: nacos/nacos-server:v2.2.3
-    container_name: em-nacos
+    container_name: dev-nacos
     platform: linux/amd64
     restart: always
     environment:
@@ -43,7 +43,7 @@ services:
       - 8848:8848
       - 9848:9848
     volumes:
-      - em-nacos-data:/home/nacos/data
+      - dev-nacos-data:/home/nacos/data
     healthcheck:
       test:
         - CMD
@@ -55,15 +55,15 @@ services:
       retries: 10
       start_period: 30s
     networks:
-      - em-network
+      - dev-network
   redis:
     image: redis:7-alpine
-    container_name: em-redis
+    container_name: dev-redis
     restart: always
     ports:
       - ${REDIS_PORT}:6379
     volumes:
-      - em-redis-data:/data
+      - dev-redis-data:/data
     command: redis-server --requirepass $REDIS_PASSWORD
     healthcheck:
       test:
@@ -73,12 +73,12 @@ services:
       timeout: 5s
       retries: 5
     networks:
-      - em-network
+      - dev-network
 networks:
-  em-network:
-    name: em-network
+  dev-network:
+    name: dev-network
     driver: bridge
 volumes:
-  em-mysql-data:
-  em-nacos-data:
-  em-redis-data:
+  dev-mysql-data:
+  dev-nacos-data:
+  dev-redis-data:
