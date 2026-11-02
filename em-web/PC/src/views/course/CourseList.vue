@@ -14,11 +14,11 @@
 			</el-form-item>
 		</el-form>
 		<el-table :data="coursePage" border>
-			<el-table-column prop="id" label="id">
+			<el-table-column prop="id" label="id" min-width="60px">
 			</el-table-column>
 			<el-table-column prop="name" label="名字">
 			</el-table-column>
-			<el-table-column prop="parentId" label="父级id">
+			<el-table-column prop="parentId" label="父级id" min-width="60px">
 			</el-table-column>
 		</el-table>
 		<div>
@@ -55,6 +55,7 @@ onMounted(() => onGetCoursePage())
 	width: 800px;
 	margin: auto;
 	padding-top: 30px;
+	padding-bottom: 30px;
 }
 
 .form-inline {
