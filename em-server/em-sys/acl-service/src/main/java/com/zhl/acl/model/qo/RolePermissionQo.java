@@ -4,7 +4,7 @@ import lombok.Data;
 import java.lang.Long;
 
 @Data
-public class RoleMenuQo {
+public class RolePermissionQo {
 
 	private Long roleId;
 

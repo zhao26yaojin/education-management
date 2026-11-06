@@ -1,4 +1,4 @@
-import { getRoleTree as getMenuRoleTree } from "@/api/sys/menu"
+import { getRoleTree as getPermissionRoleTree } from "@/api/sys/permission"
 import { defineStore } from "pinia"
 import router, { constRoutes } from "@/router/index"
 import "@/store/modules/routes"
@@ -26,7 +26,12 @@ const useRoutesStore = defineStore("routes", () => {
 			return 
 		}
 
-		const { result: aclMenuList } = await getMenuRoleTree(userInfo.role_id)
+
+		const treeParams = {
+			roleId: userInfo.role_id,
+			type: "menu"
+		}
+		const { result: aclMenuList } = await getPermissionRoleTree(treeParams)
 		traverseTree(aclMenuList, item => {
 			if (null != item.component) {
 				item.component = loadView(item.component)

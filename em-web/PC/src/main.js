@@ -1,6 +1,6 @@
 import App from "./App"
+import "@/router/guard"
 import "./index.css"
-import "@/router/permission"
 import { createPinia } from "pinia"
 import "@/assets/reset.css"
 import router from "@/router/index"

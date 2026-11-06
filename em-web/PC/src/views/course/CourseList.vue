@@ -33,7 +33,10 @@ import { onMounted, reactive } from "vue"
 
 const courseQuery = reactive({
 	id: '',
-	name: ''
+	name: '',
+	current: 1,
+	size: 10,
+	total: 0
 })
 const coursePage = reactive([])
 const onGetCoursePage = async () => {
@@ -43,9 +46,14 @@ const onGetCoursePage = async () => {
 	coursePage.splice(0, coursePage.length)
 
 	if (result.records && result.records.length > 0) {
-		coursePage.push(...result)
+		coursePage.push(...result.records)
 	}
 
+}
+const onCoursePageChange = num => {
+	courseQuery.current = num
+
+	onGetCoursePage()
 }
 onMounted(() => onGetCoursePage())
 

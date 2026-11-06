@@ -6,11 +6,13 @@ import java.lang.Long;
 import java.lang.String;
 
 @Data
-public class MenuRoleQo {
+public class PermissionRoleQo {
 
 	private Long id;
 
 	private String name;
+
+	private String type;
 
 	private Long roleId;
 

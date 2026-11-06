@@ -7,11 +7,13 @@ import java.lang.String;
 import com.zhl.utils.tree.TreeNode;
 
 @Data
-public class MenuRoleNode implements TreeNode<MenuRoleNode> {
+public class PermissionRoleNode implements TreeNode<PermissionRoleNode> {
 
 	private Long id;
 
 	private String name;
+
+	private String type;
 
 	private Long parentId;
 
@@ -23,6 +25,6 @@ public class MenuRoleNode implements TreeNode<MenuRoleNode> {
 
 	private Long roleId;
 
-	private List<MenuRoleNode> children;
+	private List<PermissionRoleNode> children;
 
 }

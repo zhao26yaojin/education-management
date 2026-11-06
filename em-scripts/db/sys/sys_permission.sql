@@ -1,0 +1,2 @@
+TRUNCATE TABLE sys_permission;
+INSERT INTO sys_permission VALUES (2, '讲师管理', 'menu', null, '02,', '', ''), (3, '讲师列表', 'menu', 2, '02,03,', '/teacher/list', 'teacher/TeacherList'), (4, '编辑讲师', 'menu', 2, '02,04,', '/teacher/edit', 'teacher/TeacherEdit'), (5, '课程管理', 'menu', null, '05,', '', ''), (6, '课程列表', 'menu', 5, '05,06,', '/course/list', 'course/CourseList'), (7, '信息', 'menu', 5, '05,07,', '', ''), (8, '课程详情', 'menu', 7, '05,07,08,', '/course/info/detail', 'course/info/InfoDetail');

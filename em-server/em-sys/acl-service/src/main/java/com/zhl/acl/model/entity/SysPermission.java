@@ -5,11 +5,13 @@ import java.lang.Long;
 import java.lang.String;
 
 @Data
-public class SysMenu {
+public class SysPermission {
 
 	private Long id;
 
 	private String name;
+
+	private String type;
 
 	private Long parentId;
 

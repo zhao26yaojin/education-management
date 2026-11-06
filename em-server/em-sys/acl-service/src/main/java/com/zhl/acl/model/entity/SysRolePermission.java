@@ -4,12 +4,12 @@ import lombok.Data;
 import java.lang.Long;
 
 @Data
-public class SysRoleMenu {
+public class SysRolePermission {
 
 	private Long id;
 
 	private Long roleId;
 
-	private Long menuId;
+	private Long permissionId;
 
 }
