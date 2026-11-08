@@ -1,6 +1,6 @@
-import Home from "@/pages/home"
-import Login from "@/pages/login"
-import Register from "@/pages/register"
+import Home from "@/layouts/home"
+import Login from "@/layouts/login"
+import Register from "@/layouts/register"
 import { createRouter, createWebHashHistory } from "vue-router"
 
 const constRoutes = [
