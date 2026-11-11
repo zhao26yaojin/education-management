@@ -21,7 +21,7 @@ public class TeacherController {
 	private TeacherService teacherService;
 
 	@GetMapping("/list")
-	public RestResponse<List<TeacherVo>> List(TeacherQo teacherQo){
+	public RestResponse<List<TeacherVo>> list(TeacherQo teacherQo){
 		List<TeacherVo> teacherVoList = teacherService.selectVoList(teacherQo);
 		return RestResponse.ok(teacherVoList);
 	}

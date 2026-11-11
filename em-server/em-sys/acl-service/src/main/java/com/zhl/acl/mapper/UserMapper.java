@@ -8,6 +8,7 @@ import java.lang.String;
 import org.apache.commons.lang3.StringUtils;
 import com.zhl.acl.model.entity.SysUser;
 import com.zhl.acl.model.qo.UserAuthQo;
+import com.zhl.acl.model.qo.UserQo;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 
 @Mapper
@@ -18,6 +19,14 @@ public interface UserMapper extends BaseMapper<SysUser> {
 		wrapper.eq(userAuthQo.getId() != null, SysUser::getId, userAuthQo.getId());
 		wrapper.eq(StringUtils.isNotEmpty(userAuthQo.getName()), SysUser::getName, userAuthQo.getName());
 		wrapper.eq(StringUtils.isNotEmpty(userAuthQo.getPassword()), SysUser::getPassword, userAuthQo.getPassword());
+
+		return wrapper;
+	}
+
+	default LambdaQueryWrapper<SysUser> getQueryWrapper(UserQo userQo){
+		LambdaQueryWrapper<SysUser> wrapper = Wrappers.lambdaQuery(SysUser.class);
+		wrapper.eq(userQo.getId() != null, SysUser::getId, userQo.getId());
+		wrapper.eq(StringUtils.isNotEmpty(userQo.getName()), SysUser::getName, userQo.getName());
 
 		return wrapper;
 	}

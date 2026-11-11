@@ -10,6 +10,18 @@
 		</TeacherEdit>
 		<CourseList v-if="selectL2Menu === 'home_course'">
 		</CourseList>
+		<SysUserList v-if="selectL2Menu === 'home_sys'">
+		</SysUserList>
+		<SysUserForm v-if="selectL2Menu === 'home_sys'">
+		</SysUserForm>
+		<SysRoleList v-if="selectL2Menu === 'home_sys'">
+		</SysRoleList>
+		<SysRoleForm v-if="selectL2Menu === 'home_sys'">
+		</SysRoleForm>
+		<SysPermissionList v-if="selectL2Menu === 'home_sys'">
+		</SysPermissionList>
+		<SysPermissionForm v-if="selectL2Menu === 'home_sys'">
+		</SysPermissionForm>
 		<Login v-if="selectL2Menu === 'None_'">
 		</Login>
 		<Register v-if="selectL2Menu === 'None_'">
@@ -22,6 +34,9 @@
 				<li>
 					<view @click="onL1MenuClick('course')">Course</view>
 				</li>
+				<li>
+					<view @click="onL1MenuClick('sys')">Sys</view>
+				</li>
 			</ul>
 		</view>
 	</view>
@@ -36,6 +51,18 @@
 		</TeacherEdit>
 		<CourseList v-if="selectL2Menu === 'home_course'">
 		</CourseList>
+		<SysUserList v-if="selectL2Menu === 'home_sys'">
+		</SysUserList>
+		<SysUserForm v-if="selectL2Menu === 'home_sys'">
+		</SysUserForm>
+		<SysRoleList v-if="selectL2Menu === 'home_sys'">
+		</SysRoleList>
+		<SysRoleForm v-if="selectL2Menu === 'home_sys'">
+		</SysRoleForm>
+		<SysPermissionList v-if="selectL2Menu === 'home_sys'">
+		</SysPermissionList>
+		<SysPermissionForm v-if="selectL2Menu === 'home_sys'">
+		</SysPermissionForm>
 		<Login v-if="selectL2Menu === 'None_'">
 		</Login>
 		<Register v-if="selectL2Menu === 'None_'">
@@ -56,6 +83,18 @@
 		</TeacherEdit>
 		<CourseList v-if="selectL2Menu === 'home_course'">
 		</CourseList>
+		<SysUserList v-if="selectL2Menu === 'home_sys'">
+		</SysUserList>
+		<SysUserForm v-if="selectL2Menu === 'home_sys'">
+		</SysUserForm>
+		<SysRoleList v-if="selectL2Menu === 'home_sys'">
+		</SysRoleList>
+		<SysRoleForm v-if="selectL2Menu === 'home_sys'">
+		</SysRoleForm>
+		<SysPermissionList v-if="selectL2Menu === 'home_sys'">
+		</SysPermissionList>
+		<SysPermissionForm v-if="selectL2Menu === 'home_sys'">
+		</SysPermissionForm>
 		<Login v-if="selectL2Menu === 'None_'">
 		</Login>
 		<Register v-if="selectL2Menu === 'None_'">

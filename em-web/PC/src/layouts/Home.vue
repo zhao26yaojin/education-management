@@ -22,6 +22,17 @@
 						<el-menu-item index="/course/info/detail">detail</el-menu-item>
 					</el-sub-menu>
 				</el-sub-menu>
+				<el-sub-menu>
+					<template #title>
+						<span>sys</span>
+					</template>
+					<el-menu-item index="/sys/userList">userList</el-menu-item>
+					<el-menu-item index="/sys/userForm">userForm</el-menu-item>
+					<el-menu-item index="/sys/roleList">roleList</el-menu-item>
+					<el-menu-item index="/sys/roleForm">roleForm</el-menu-item>
+					<el-menu-item index="/sys/permissionList">permissionList</el-menu-item>
+					<el-menu-item index="/sys/permissionForm">permissionForm</el-menu-item>
+				</el-sub-menu>
 			</el-menu>
 		</div>
 		<router-view>

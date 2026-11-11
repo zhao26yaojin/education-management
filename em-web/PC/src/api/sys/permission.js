@@ -7,3 +7,17 @@ export function getRoleTree(params){
 		params: params
 	})
 }
+export function getList(params){
+	return service({
+		url: `/acl/permission/list`,
+		method: "get",
+		params: params
+	})
+}
+export function saveForm(data){
+	return service({
+		url: `/acl/permission/save`,
+		method: "post",
+		data: data
+	})
+}

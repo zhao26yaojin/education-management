@@ -14,7 +14,9 @@ import com.zhl.acl.model.qo.UserAuthQo;
 import com.zhl.acl.model.vo.UserAuthVo;
 import com.zhl.acl.model.convert.UserConverter;
 import com.zhl.acl.mapper.UserMapper;
+import com.zhl.acl.model.qo.UserQo;
 import com.zhl.acl.model.qo.UserRoleQo;
+import com.zhl.acl.model.vo.UserVo;
 
 @Service
 public class UserService extends ServiceImpl<UserMapper, SysUser> {
@@ -56,6 +58,29 @@ public class UserService extends ServiceImpl<UserMapper, SysUser> {
 		userAuthVo.setRoleIdList(roleIdList);
 
 		return userAuthVo;
+	}
+
+	public List<UserVo> selectVoList(UserQo userQo){
+		List<SysUser> sysUserList = selectList(userQo);
+		return UserConverter.entityListToVoList(sysUserList);
+	}
+
+	public List<SysUser> selectList(UserQo userQo){
+		LambdaQueryWrapper<SysUser> lambdaQueryWrapper = baseMapper.getQueryWrapper(userQo);
+		return this.list(lambdaQueryWrapper);
+	}
+
+	public boolean saveVo(UserVo userVo){
+		if (userVo == null) {
+			return false;
+		}
+		SysUser entity = UserConverter.voToEntity(userVo);
+		boolean result = this.saveOrUpdate(entity);
+
+		if (result) {
+			userVo.setId(entity.getId());
+		}
+		return result;
 	}
 
 }

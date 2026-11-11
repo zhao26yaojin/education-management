@@ -3,6 +3,7 @@ package com.zhl.acl.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.zhl.utils.constant.ExceptionConstants;
 import org.springframework.web.bind.annotation.GetMapping;
+import java.util.List;
 import java.lang.Long;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,7 +14,9 @@ import com.zhl.services.security.util.SecurityUtil;
 import java.lang.String;
 import com.zhl.acl.model.qo.UserAuthQo;
 import com.zhl.acl.model.vo.UserAuthVo;
+import com.zhl.acl.model.qo.UserQo;
 import com.zhl.acl.service.UserService;
+import com.zhl.acl.model.vo.UserVo;
 
 @RestController
 @RequestMapping("/user")
@@ -41,6 +44,28 @@ public class UserController {
 		userAuthQo.setId(SecurityUtil.getUserId());
 		UserAuthVo userAuthVo = userService.selectAuthVo(userAuthQo);
 		return RestResponse.ok(userAuthVo);
+	}
+
+	@GetMapping("/list")
+	public RestResponse<List<UserVo>> list(UserQo userQo){
+		List<UserVo> userVoList = userService.selectVoList(userQo);
+		return RestResponse.ok(userVoList);
+	}
+
+	@PostMapping("/save")
+	public RestResponse<String> saveVo(@RequestBody UserVo userVo){
+		if (userVo == null) {
+			return null;
+		}
+		boolean result = userService.saveVo(userVo);
+
+		if (result) {
+			return RestResponse.ok();
+		}
+
+		else {
+			return RestResponse.error(String.valueOf(result));
+		}
 	}
 
 }
