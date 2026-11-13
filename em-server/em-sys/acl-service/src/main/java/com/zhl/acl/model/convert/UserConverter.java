@@ -9,7 +9,7 @@ import com.zhl.acl.model.vo.UserVo;
 
 public class UserConverter {
 
-	public static UserAuthVo entityToVo(SysUser entity){
+	public static UserAuthVo entityToAuthVo(SysUser entity){
 		UserAuthVo userAuthVo = new UserAuthVo();
 
 		if (entity == null) {
@@ -32,6 +32,17 @@ public class UserConverter {
 		}
 
 		return userVoList;
+	}
+
+	public static UserVo entityToVo(SysUser sysUser){
+		UserVo userVo = new UserVo();
+
+		if (sysUser == null) {
+			return null;
+		}
+		BeanUtils.copyProperties(sysUser, userVo);
+
+		return userVo;
 	}
 
 	public static SysUser voToEntity(UserVo userVo){

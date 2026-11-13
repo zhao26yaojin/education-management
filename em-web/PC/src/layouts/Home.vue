@@ -3,26 +3,26 @@
 		<div class="sidebar">
 			<h5 class="title">education management</h5>
 			<el-menu height="100%" background-color="#ffb8e7" active-text-color="#04718" text-color="#fff" router>
-				<el-sub-menu>
+				<el-sub-menu index="/teacher">
 					<template #title>
 						<span>teacher</span>
 					</template>
 					<el-menu-item index="/teacher/list">list</el-menu-item>
 					<el-menu-item index="/teacher/edit">edit</el-menu-item>
 				</el-sub-menu>
-				<el-sub-menu>
+				<el-sub-menu index="/course">
 					<template #title>
 						<span>course</span>
 					</template>
 					<el-menu-item index="/course/list">list</el-menu-item>
-					<el-sub-menu>
+					<el-sub-menu index="/course/info">
 						<template #title>
 							<span>info</span>
 						</template>
 						<el-menu-item index="/course/info/detail">detail</el-menu-item>
 					</el-sub-menu>
 				</el-sub-menu>
-				<el-sub-menu>
+				<el-sub-menu index="/sys">
 					<template #title>
 						<span>sys</span>
 					</template>

@@ -30,7 +30,7 @@ public class PermissionService extends ServiceImpl<PermissionMapper, SysPermissi
 		permissionRoleQo.setIdList(roleIdList);
 
 		List<SysPermission> sysPermissionList = selectList(permissionRoleQo);
-		return PermissionConverter.entityListToTree(sysPermissionList);
+		return PermissionConverter.entityListToRoleTree(sysPermissionList);
 	}
 
 	public List<SysPermission> selectList(PermissionRoleQo permissionRoleQo){

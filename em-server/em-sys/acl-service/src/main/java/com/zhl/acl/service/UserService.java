@@ -29,7 +29,7 @@ public class UserService extends ServiceImpl<UserMapper, SysUser> {
 
 	public UserAuthVo login(UserAuthQo userAuthQo){
 		SysUser entity = selectEntity(userAuthQo);
-		UserAuthVo userAuthVo = UserConverter.entityToVo(entity);
+		UserAuthVo userAuthVo = UserConverter.entityToAuthVo(entity);
 
 		UserRoleQo userRoleQo = new UserRoleQo();
 		userRoleQo.setUserId(userAuthQo.getId());
@@ -49,7 +49,7 @@ public class UserService extends ServiceImpl<UserMapper, SysUser> {
 
 	public UserAuthVo selectAuthVo(UserAuthQo userAuthQo){
 		SysUser entity = selectEntity(userAuthQo);
-		UserAuthVo userAuthVo = UserConverter.entityToVo(entity);
+		UserAuthVo userAuthVo = UserConverter.entityToAuthVo(entity);
 
 		UserRoleQo userRoleQo = new UserRoleQo();
 		userRoleQo.setUserId(userAuthQo.getId());

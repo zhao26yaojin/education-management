@@ -9,10 +9,18 @@
 				<el-button type="primary" @click="onGetRoleList">Query</el-button>
 			</el-form-item>
 		</el-form>
+		<el-button type="primary">Add</el-button>
 		<el-table :data="roleList" border>
 			<el-table-column prop="name" label="角色名">
 			</el-table-column>
 			<el-table-column prop="status" label="状态" min-width="60px">
+			</el-table-column>
+			<el-table-column label="Operation" fixed="right">
+				<template #default>
+					<el-button link type="primary" size="small">Edit</el-button>
+					<el-button link type="danger" size="small">Delete</el-button>
+					<el-button link type="primary" size="small">Assign</el-button>
+				</template>
 			</el-table-column>
 		</el-table>
 	</div>

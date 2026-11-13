@@ -10,14 +10,14 @@ import com.zhl.utils.tree.TreeUtil;
 
 public class PermissionConverter {
 
-	public static List<PermissionRoleNode> entityListToTree(List<SysPermission> sysPermissionList){
+	public static List<PermissionRoleNode> entityListToRoleTree(List<SysPermission> sysPermissionList){
 		List<PermissionRoleNode> roleNodeList = Lists.newArrayList();
 
 		for (SysPermission sysPermission : sysPermissionList) {
 			if (sysPermission == null) {
 				return null;
 			}
-			PermissionRoleNode permissionRoleNode = entityToNode(sysPermission);
+			PermissionRoleNode permissionRoleNode = entityToRoleNode(sysPermission);
 			roleNodeList.add(permissionRoleNode);
 		}
 
@@ -25,7 +25,7 @@ public class PermissionConverter {
 		return roleNodeList;
 	}
 
-	public static PermissionRoleNode entityToNode(SysPermission sysPermission){
+	public static PermissionRoleNode entityToRoleNode(SysPermission sysPermission){
 		PermissionRoleNode permissionRoleNode = new PermissionRoleNode();
 
 		if (sysPermission == null) {
