@@ -48,6 +48,16 @@ public class PermissionService extends ServiceImpl<PermissionMapper, SysPermissi
 		return this.list(lambdaQueryWrapper);
 	}
 
+	public PermissionVo selectVo(PermissionQo permissionQo){
+		SysPermission entity = selectEntity(permissionQo);
+		return PermissionConverter.entityToVo(entity);
+	}
+
+	public SysPermission selectEntity(PermissionQo permissionQo){
+		LambdaQueryWrapper<SysPermission> lambdaQueryWrapper = baseMapper.getQueryWrapper(permissionQo);
+		return this.getOne(lambdaQueryWrapper, false);
+	}
+
 	public boolean saveVo(PermissionVo permissionVo){
 		if (permissionVo == null) {
 			return false;

@@ -14,11 +14,25 @@ export function getList(params){
 		params: params
 	})
 }
+export function deleteByIds(data){
+	return service({
+		url: `/acl/user/delete`,
+		method: "post",
+		data: data
+	})
+}
 export function saveForm(data){
 	return service({
 		url: `/acl/user/save`,
 		method: "post",
 		data: data
+	})
+}
+export function getDetail(params){
+	return service({
+		url: `/acl/user/detail`,
+		method: "get",
+		params: params
 	})
 }
 export function login(data){

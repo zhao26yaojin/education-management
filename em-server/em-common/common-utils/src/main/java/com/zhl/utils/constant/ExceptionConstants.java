@@ -6,4 +6,6 @@ public class ExceptionConstants {
 
 	public static final String NAME_PASSWORD_FAIL = "用户名或密码错误";
 
+	public static final String DELETE_FAIL = "删除失败";
+
 }

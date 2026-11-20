@@ -1,5 +1,6 @@
 package com.zhl.acl.service;
 
+import org.apache.commons.collections4.CollectionUtils;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import java.util.List;
 import java.lang.Long;
@@ -22,6 +23,24 @@ public class RoleService extends ServiceImpl<RoleMapper, SysRole> {
 	public List<SysRole> selectList(RoleQo roleQo){
 		LambdaQueryWrapper<SysRole> lambdaQueryWrapper = baseMapper.getQueryWrapper(roleQo);
 		return this.list(lambdaQueryWrapper);
+	}
+
+	public boolean deleteByIds(List<Long> ids){
+		if (CollectionUtils.isEmpty(ids)) {
+			return false;
+		}
+
+		return this.removeByIds(ids);
+	}
+
+	public RoleVo selectVo(RoleQo roleQo){
+		SysRole entity = selectEntity(roleQo);
+		return RoleConverter.entityToVo(entity);
+	}
+
+	public SysRole selectEntity(RoleQo roleQo){
+		LambdaQueryWrapper<SysRole> lambdaQueryWrapper = baseMapper.getQueryWrapper(roleQo);
+		return this.getOne(lambdaQueryWrapper, false);
 	}
 
 	public boolean saveVo(RoleVo roleVo){

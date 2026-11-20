@@ -9,7 +9,7 @@
 				<el-button type="primary" @click="onGetUserList">Query</el-button>
 			</el-form-item>
 		</el-form>
-		<el-button type="primary">Add</el-button>
+		<el-button type="primary" @click="onAddUser">Add</el-button>
 		<el-table :data="userList" border>
 			<el-table-column prop="name" label="用户名">
 			</el-table-column>
@@ -26,18 +26,20 @@
 			<el-table-column prop="deleted" label="逻辑删除" min-width="60px">
 			</el-table-column>
 			<el-table-column label="Operation" fixed="right">
-				<template #default>
-					<el-button link type="primary" size="small">Edit</el-button>
-					<el-button link type="danger" size="small">Delete</el-button>
+				<template #default="{ row }">
+					<el-button link type="primary" size="small" @click="onEditUser(row)">Edit</el-button>
+					<el-button link type="danger" size="small" @click="onDeleteUserByIds(row)">Delete</el-button>
 				</template>
 			</el-table-column>
 		</el-table>
 	</div>
 </template>
 <script setup>
-import { getList as getUserList } from "@/api/sys/user"
+import { deleteByIds as deleteUserByIds, getList as getUserList } from "@/api/sys/user"
 import { onMounted, reactive } from "vue"
+import { useRouter } from "vue-router"
 
+const router = useRouter()
 const userQuery = reactive({name: ''})
 const userList = reactive([])
 const onGetUserList = async () => {
@@ -49,6 +51,38 @@ const onGetUserList = async () => {
 		userList.push(...result)
 	}
 
+}
+const onAddUser = () => {
+	router.push({path: "/sys/userForm"})
+}
+const onEditUser = row => {
+	router.push({
+		path: "/sys/userForm",
+		query: {
+			id: row.id
+		}
+	})
+}
+const onDeleteUserByIds = async row => {
+	try {
+		ElMessageBox.confirm("确定删除吗？", "提示", {
+			confirmButtonText: "是",
+			cancelButtonText: "否",
+			type: "warning"
+		})
+	}
+
+
+	catch {
+		return 
+	}
+
+
+	await deleteUserByIds(row.id)
+
+	ElMessage.success("删除成功")
+
+	onGetUserList()
 }
 onMounted(() => onGetUserList())
 

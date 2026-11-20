@@ -16,15 +16,24 @@
 	</div>
 </template>
 <script setup>
-import router from "@/router/index"
 import useUserStore from "@/store/modules/user"
 import { login } from "@/api/sys/user"
 import { reactive } from "vue"
 import { useRouter } from "vue-router"
 
 const userAuth = reactive({
+	id: null,
 	name: '',
-	password: ''
+	password: '',
+	gender: '',
+	email: '',
+	phone: '',
+	status: null,
+	deleted: null,
+	roleIdList: '',
+	userKey: '',
+	token: '',
+	loginTime: null
 })
 const userStore = useUserStore()
 const onLogin = async () => {

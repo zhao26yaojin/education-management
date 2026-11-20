@@ -24,13 +24,15 @@
 	</div>
 </template>
 <script setup>
-import { saveForm as saveTeacherForm } from "@/api/edu/teacher"
-import { reactive } from "vue"
+import { getDetail as getTeacherDetail, saveForm as saveTeacherForm } from "@/api/edu/teacher"
+import { onMounted, reactive } from "vue"
+import { useRoute } from "vue-router"
 
+const route = useRoute()
 const teacher = reactive({
-	id: '',
+	id: null,
 	name: '',
-	level: '',
+	level: null,
 	logo: ''
 })
 const onSaveTeacherForm = async () => {
@@ -42,6 +44,22 @@ const onSaveTeacherForm = async () => {
 		type: success ? "success": "error"
 	})
 }
+const onGetTeacherDetail = async () => {
+	const id = route.query.id
+
+	if (id) {
+		const query = {id: id }
+		const { result } = await getTeacherDetail(query)
+
+				if (result) {
+			Object.assign(teacher, result)
+		}
+
+
+	}
+
+}
+onMounted(() => onGetTeacherDetail())
 
 </script>
 <style scoped>

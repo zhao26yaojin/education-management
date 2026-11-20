@@ -36,17 +36,21 @@
 	</div>
 </template>
 <script setup>
-import { saveForm as saveUserForm } from "@/api/sys/user"
-import { reactive } from "vue"
+import { getDetail as getUserDetail, saveForm as saveUserForm } from "@/api/sys/user"
+import { onMounted, reactive } from "vue"
+import { useRoute, useRouter } from "vue-router"
 
+const route = useRoute()
+const router = useRouter()
 const user = reactive({
+	id: null,
 	name: '',
 	password: '',
 	gender: '',
 	email: '',
 	phone: '',
-	status: '',
-	deleted: ''
+	status: null,
+	deleted: null
 })
 const onSaveUserForm = async () => {
 	const { result } = await saveUserForm(user)
@@ -56,7 +60,28 @@ const onSaveUserForm = async () => {
 		message: success ? "保存成功": result,
 		type: success ? "success": "error"
 	})
+
+	if (success) {
+		router.push("/sys/userList")
+	}
+
 }
+const onGetUserDetail = async () => {
+	const id = route.query.id
+
+	if (id) {
+		const query = {id: id }
+		const { result } = await getUserDetail(query)
+
+				if (result) {
+			Object.assign(user, result)
+		}
+
+
+	}
+
+}
+onMounted(() => onGetUserDetail())
 
 </script>
 <style scoped>

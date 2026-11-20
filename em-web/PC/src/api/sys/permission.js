@@ -21,3 +21,10 @@ export function saveForm(data){
 		data: data
 	})
 }
+export function getDetail(params){
+	return service({
+		url: `/acl/permission/detail`,
+		method: "get",
+		params: params
+	})
+}

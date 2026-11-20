@@ -41,10 +41,10 @@ import { saveForm as savePermissionForm } from "@/api/sys/permission"
 import { reactive } from "vue"
 
 const permissionForm = reactive({
-	id: '',
+	id: null,
 	name: '',
 	type: '',
-	parentId: '',
+	parentId: null,
 	pidPath: '',
 	path: '',
 	component: ''

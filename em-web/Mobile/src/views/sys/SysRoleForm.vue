@@ -25,9 +25,9 @@ import { saveForm as saveRoleForm } from "@/api/sys/role"
 import { reactive } from "vue"
 
 const roleForm = reactive({
-	id: '',
+	id: null,
 	name: '',
-	status: ''
+	status: null
 })
 const onSaveRoleForm = () => {
 	const { result } = saveRoleForm(roleForm)

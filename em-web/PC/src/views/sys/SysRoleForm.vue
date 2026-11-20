@@ -16,12 +16,16 @@
 	</div>
 </template>
 <script setup>
-import { saveForm as saveRoleForm } from "@/api/sys/role"
-import { reactive } from "vue"
+import { getDetail as getRoleDetail, saveForm as saveRoleForm } from "@/api/sys/role"
+import { onMounted, reactive } from "vue"
+import { useRoute, useRouter } from "vue-router"
 
+const route = useRoute()
+const router = useRouter()
 const role = reactive({
+	id: null,
 	name: '',
-	status: ''
+	status: null
 })
 const onSaveRoleForm = async () => {
 	const { result } = await saveRoleForm(role)
@@ -31,7 +35,28 @@ const onSaveRoleForm = async () => {
 		message: success ? "保存成功": result,
 		type: success ? "success": "error"
 	})
+
+	if (success) {
+		router.push("/sys/roleList")
+	}
+
 }
+const onGetRoleDetail = async () => {
+	const id = route.query.id
+
+	if (id) {
+		const query = {id: id }
+		const { result } = await getRoleDetail(query)
+
+				if (result) {
+			Object.assign(role, result)
+		}
+
+
+	}
+
+}
+onMounted(() => onGetRoleDetail())
 
 </script>
 <style scoped>

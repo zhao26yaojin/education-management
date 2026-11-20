@@ -32,13 +32,17 @@
 	</div>
 </template>
 <script setup>
-import { saveForm as savePermissionForm } from "@/api/sys/permission"
-import { reactive } from "vue"
+import { getDetail as getPermissionDetail, saveForm as savePermissionForm } from "@/api/sys/permission"
+import { onMounted, reactive } from "vue"
+import { useRoute, useRouter } from "vue-router"
 
+const route = useRoute()
+const router = useRouter()
 const permission = reactive({
+	id: null,
 	name: '',
 	type: '',
-	parentId: '',
+	parentId: null,
 	pidPath: '',
 	path: '',
 	component: ''
@@ -51,7 +55,28 @@ const onSavePermissionForm = async () => {
 		message: success ? "保存成功": result,
 		type: success ? "success": "error"
 	})
+
+	if (success) {
+		router.push("/sys/permissionList")
+	}
+
 }
+const onGetPermissionDetail = async () => {
+	const id = route.query.id
+
+	if (id) {
+		const query = {id: id }
+		const { result } = await getPermissionDetail(query)
+
+				if (result) {
+			Object.assign(permission, result)
+		}
+
+
+	}
+
+}
+onMounted(() => onGetPermissionDetail())
 
 </script>
 <style scoped>

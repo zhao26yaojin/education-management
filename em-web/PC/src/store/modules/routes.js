@@ -1,6 +1,6 @@
 import { getRoleTree as getPermissionRoleTree } from "@/api/sys/permission"
 import { defineStore } from "pinia"
-import router, { constRoutes } from "@/router/index"
+import appRouter, { constRoutes } from "@/router/index"
 import "@/store/modules/routes"
 import useUserStore from "@/store/modules/user"
 import { traverseTree } from "@/utils/treeUtil"
@@ -39,7 +39,7 @@ const useRoutesStore = defineStore("routes", () => {
 
 		})
 
-		aclMenuList.forEach(item => router.addRoute("home", item))
+		aclMenuList.forEach(item => appRouter.addRoute("home", item))
 
 		aclRoutes.value = constRoutes
 	}

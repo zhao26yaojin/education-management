@@ -24,6 +24,16 @@ public class TeacherService extends ServiceImpl<TeacherMapper, EduTeacher> {
 		return this.list(lambdaQueryWrapper);
 	}
 
+	public TeacherVo selectVo(TeacherQo teacherQo){
+		EduTeacher entity = selectEntity(teacherQo);
+		return TeacherConverter.entityToVo(entity);
+	}
+
+	public EduTeacher selectEntity(TeacherQo teacherQo){
+		LambdaQueryWrapper<EduTeacher> lambdaQueryWrapper = baseMapper.getQueryWrapper(teacherQo);
+		return this.getOne(lambdaQueryWrapper, false);
+	}
+
 	public boolean saveVo(TeacherVo teacherVo){
 		if (teacherVo == null) {
 			return false;

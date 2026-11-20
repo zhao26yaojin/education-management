@@ -39,9 +39,9 @@ import { getList as getTeacherList } from "@/api/edu/teacher"
 import { onMounted, reactive } from "vue"
 
 const teacherQuery = reactive({
-	id: '',
+	id: null,
 	name: '',
-	level: ''
+	level: null
 })
 const teacherList = reactive([])
 const onGetTeacherList = async () => {

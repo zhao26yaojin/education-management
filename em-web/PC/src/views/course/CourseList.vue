@@ -32,7 +32,7 @@ import { getPage as getCoursePage } from "@/api/edu/course"
 import { onMounted, reactive } from "vue"
 
 const courseQuery = reactive({
-	id: '',
+	id: null,
 	name: '',
 	current: 1,
 	size: 10,

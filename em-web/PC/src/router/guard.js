@@ -1,4 +1,4 @@
-import router from "@/router/index"
+import appRouter from "@/router/index"
 import useRoutesStore from "@/store/modules/routes"
 import useUserStore from "@/store/modules/user"
 
@@ -6,7 +6,7 @@ const whiteList = [
 	"/login",
 	"/register"
 ]
-router.beforeEach(async (to, from, next) => {
+appRouter.beforeEach(async (to, from, next) => {
     const userStore = useUserStore()
 	const routesStore = useRoutesStore()
 	const token = userStore.token

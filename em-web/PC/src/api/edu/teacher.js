@@ -14,3 +14,10 @@ export function saveForm(data){
 		data: data
 	})
 }
+export function getDetail(params){
+	return service({
+		url: `/education/teacher/detail`,
+		method: "get",
+		params: params
+	})
+}

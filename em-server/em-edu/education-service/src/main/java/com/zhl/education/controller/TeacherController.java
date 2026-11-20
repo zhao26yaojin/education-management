@@ -26,6 +26,12 @@ public class TeacherController {
 		return RestResponse.ok(teacherVoList);
 	}
 
+	@GetMapping("/detail")
+	public RestResponse<TeacherVo> selectVo(TeacherQo teacherQo){
+		TeacherVo teacherVo = teacherService.selectVo(teacherQo);
+		return RestResponse.ok(teacherVo);
+	}
+
 	@PostMapping("/save")
 	public RestResponse<String> saveVo(@RequestBody TeacherVo teacherVo){
 		if (teacherVo == null) {

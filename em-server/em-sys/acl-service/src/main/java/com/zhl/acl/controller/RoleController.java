@@ -1,8 +1,10 @@
 package com.zhl.acl.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import com.zhl.utils.constant.ExceptionConstants;
 import org.springframework.web.bind.annotation.GetMapping;
 import java.util.List;
+import java.lang.Long;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +26,25 @@ public class RoleController {
 	public RestResponse<List<RoleVo>> list(RoleQo roleQo){
 		List<RoleVo> roleVoList = roleService.selectVoList(roleQo);
 		return RestResponse.ok(roleVoList);
+	}
+
+	@PostMapping("/delete")
+	public RestResponse<String> delete(@RequestBody List<Long> ids){
+		boolean result = roleService.deleteByIds(ids);
+
+		if (result) {
+			return RestResponse.ok();
+		}
+
+		else {
+			return RestResponse.error(ExceptionConstants.DELETE_FAIL);
+		}
+	}
+
+	@GetMapping("/detail")
+	public RestResponse<RoleVo> selectVo(RoleQo roleQo){
+		RoleVo roleVo = roleService.selectVo(roleQo);
+		return RestResponse.ok(roleVo);
 	}
 
 	@PostMapping("/save")

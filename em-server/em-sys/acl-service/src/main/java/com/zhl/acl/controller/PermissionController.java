@@ -34,6 +34,12 @@ public class PermissionController {
 		return RestResponse.ok(permissionVoList);
 	}
 
+	@GetMapping("/detail")
+	public RestResponse<PermissionVo> selectVo(PermissionQo permissionQo){
+		PermissionVo permissionVo = permissionService.selectVo(permissionQo);
+		return RestResponse.ok(permissionVo);
+	}
+
 	@PostMapping("/save")
 	public RestResponse<String> saveVo(@RequestBody PermissionVo permissionVo){
 		if (permissionVo == null) {

@@ -9,26 +9,28 @@
 				<el-button type="primary" @click="onGetRoleList">Query</el-button>
 			</el-form-item>
 		</el-form>
-		<el-button type="primary">Add</el-button>
+		<el-button type="primary" @click="onAddRole">Add</el-button>
 		<el-table :data="roleList" border>
 			<el-table-column prop="name" label="角色名">
 			</el-table-column>
 			<el-table-column prop="status" label="状态" min-width="60px">
 			</el-table-column>
 			<el-table-column label="Operation" fixed="right">
-				<template #default>
-					<el-button link type="primary" size="small">Edit</el-button>
-					<el-button link type="danger" size="small">Delete</el-button>
-					<el-button link type="primary" size="small">Assign</el-button>
+				<template #default="{ row }">
+					<el-button link type="primary" size="small" @click="onEditRole(row)">Edit</el-button>
+					<el-button link type="danger" size="small" @click="onDeleteRoleByIds(row)">Delete</el-button>
+					<el-button link type="primary" size="small" @click="onAssignRole(row)">Assign</el-button>
 				</template>
 			</el-table-column>
 		</el-table>
 	</div>
 </template>
 <script setup>
-import { getList as getRoleList } from "@/api/sys/role"
+import { deleteByIds as deleteRoleByIds, getList as getRoleList } from "@/api/sys/role"
 import { onMounted, reactive } from "vue"
+import { useRouter } from "vue-router"
 
+const router = useRouter()
 const roleQuery = reactive({name: ''})
 const roleList = reactive([])
 const onGetRoleList = async () => {
@@ -40,6 +42,38 @@ const onGetRoleList = async () => {
 		roleList.push(...result)
 	}
 
+}
+const onAddRole = () => {
+	router.push({path: "/sys/roleForm"})
+}
+const onEditRole = row => {
+	router.push({
+		path: "/sys/roleForm",
+		query: {
+			id: row.id
+		}
+	})
+}
+const onDeleteRoleByIds = async row => {
+	try {
+		ElMessageBox.confirm("确定删除吗？", "提示", {
+			confirmButtonText: "是",
+			cancelButtonText: "否",
+			type: "warning"
+		})
+	}
+
+
+	catch {
+		return 
+	}
+
+
+	await deleteRoleByIds(row.id)
+
+	ElMessage.success("删除成功")
+
+	onGetRoleList()
 }
 onMounted(() => onGetRoleList())
 

@@ -29,9 +29,9 @@ import { saveForm as saveTeacherForm } from "@/api/edu/teacher"
 import { reactive } from "vue"
 
 const teacherForm = reactive({
-	id: '',
+	id: null,
 	name: '',
-	level: '',
+	level: null,
 	logo: ''
 })
 const onSaveTeacherForm = () => {

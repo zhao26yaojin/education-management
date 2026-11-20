@@ -1,6 +1,7 @@
 package com.zhl.acl.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.apache.commons.collections4.CollectionUtils;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import java.util.List;
 import java.lang.Long;
@@ -68,6 +69,24 @@ public class UserService extends ServiceImpl<UserMapper, SysUser> {
 	public List<SysUser> selectList(UserQo userQo){
 		LambdaQueryWrapper<SysUser> lambdaQueryWrapper = baseMapper.getQueryWrapper(userQo);
 		return this.list(lambdaQueryWrapper);
+	}
+
+	public boolean deleteByIds(List<Long> ids){
+		if (CollectionUtils.isEmpty(ids)) {
+			return false;
+		}
+
+		return this.removeByIds(ids);
+	}
+
+	public UserVo selectVo(UserQo userQo){
+		SysUser entity = selectEntity(userQo);
+		return UserConverter.entityToVo(entity);
+	}
+
+	public SysUser selectEntity(UserQo userQo){
+		LambdaQueryWrapper<SysUser> lambdaQueryWrapper = baseMapper.getQueryWrapper(userQo);
+		return this.getOne(lambdaQueryWrapper, false);
 	}
 
 	public boolean saveVo(UserVo userVo){

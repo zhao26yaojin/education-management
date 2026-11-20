@@ -52,6 +52,25 @@ public class UserController {
 		return RestResponse.ok(userVoList);
 	}
 
+	@PostMapping("/delete")
+	public RestResponse<String> delete(@RequestBody List<Long> ids){
+		boolean result = userService.deleteByIds(ids);
+
+		if (result) {
+			return RestResponse.ok();
+		}
+
+		else {
+			return RestResponse.error(ExceptionConstants.DELETE_FAIL);
+		}
+	}
+
+	@GetMapping("/detail")
+	public RestResponse<UserVo> selectVo(UserQo userQo){
+		UserVo userVo = userService.selectVo(userQo);
+		return RestResponse.ok(userVo);
+	}
+
 	@PostMapping("/save")
 	public RestResponse<String> saveVo(@RequestBody UserVo userVo){
 		if (userVo == null) {

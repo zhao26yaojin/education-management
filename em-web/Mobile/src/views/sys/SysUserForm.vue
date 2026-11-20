@@ -45,14 +45,14 @@ import { saveForm as saveUserForm } from "@/api/sys/user"
 import { reactive } from "vue"
 
 const userForm = reactive({
-	id: '',
+	id: null,
 	name: '',
 	password: '',
 	gender: '',
 	email: '',
 	phone: '',
-	status: '',
-	deleted: ''
+	status: null,
+	deleted: null
 })
 const onSaveUserForm = () => {
 	const { result } = saveUserForm(userForm)
